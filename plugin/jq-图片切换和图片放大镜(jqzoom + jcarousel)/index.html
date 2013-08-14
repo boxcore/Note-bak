@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="css/jquery.jcarousel.css" rel="stylesheet" type="text/css"  />
+<link href="css/jqzoom.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.curr_base {
+	border:1px solid #ccc;
+}
+.cur_on {
+	border:2px solid #FF6600;
+}
+</style>
+</head>
+<body>
+<div class="main">
+  
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<!-- head start -->
+
+<!--head end --> 
+
+
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+          <h2> Jquery-图片切换和图片放大镜效果(jqzoom + jcarousel)</h2>
+        </div>
+		<table border="0" align="left" style="margin-left: 10px;">
+		  <tr>
+		    <td style="width:355px;height:251px;">
+				<div id="BigImage" class="jqzoom" style="border:1px solid #ccc">
+					<img id="_middleImage" src="images/middle/moto.jpg" width="349" longdesc="images/big/moto.jpg"/>
+				</div>
+			</td>
+		  </tr>
+		  <tr>
+		    <td><ul id="mycarousel" class="jcarousel-skin-tango">
+			    <li><img class="curr_base" style="width:50px;height:38px;" src="images/small/moto.jpg" name="moto.jpg"/></li>
+		        <li><img class="curr_base" style="width:50px;height:38px;" src="images/small/p1.jpg" name="p1.jpg"/></li>
+		        <li><img class="curr_base" style="width:50px;height:38px;" src="images/small/p2.jpg" name="p2.jpg"/></li>
+				<li><img class="curr_base" style="width:50px;height:38px;" src="images/small/p3.jpg" name="p3.jpg"/></li>
+				<li><img class="curr_base" style="width:50px;height:38px;" src="images/small/p4.jpg" name="p4.jpg"/></li>
+		        <li><img class="curr_base" style="width:50px;height:38px;" src="images/small/p6.jpg" name="p6.jpg"/></li>
+		      </ul></td>
+		  </tr>
+		</table>
+      </div>
+    </div>
+  </div>
+  
+</div>
+<h1></h1>
+<script type="text/javascript" src="js/jcarousel.js"></script> 
+<script type="text/javascript" src="js/jqzoom.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+ 
+   $("#mycarousel").jcarousel({initCallback:mycarousel_initCallback});
+   $(".jqzoom").jqueryzoom({
+		xzoom:320,
+		yzoom:240,
+		offset:10,
+		position:"right",
+        preload:1,
+		lens:1
+	});
+
+});
+
+function mycarousel_initCallback(carousel){
+	$("#mycarousel li").mouseover(function(){
+		var JQ_img = $("img", this);
+		var image_name = JQ_img.attr("name");
+		$("#_middleImage").attr("src", "images/middle/" + image_name).attr("longdesc", "images/big/" + image_name); 
+		$(this).siblings().each(function(){
+			$("img", this).removeClass().addClass("curr_base");
+		})
+		JQ_img.addClass("cur_on");
+	})
+};
+ </script>
+
+</body>
+</html>
