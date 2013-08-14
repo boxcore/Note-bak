@@ -12,3 +12,4 @@ function binarysearch($arr, $value, $start = 0, $end = NULL) {
 $arr = array(1, 3, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20);  
 $value = 8;  
 echo binarysearch($arr, $value); 
+####这是修改的二分发，努力学习吧！
