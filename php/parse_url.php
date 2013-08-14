@@ -11,6 +11,12 @@ echo array_pop(explode('.', $str['path']));
 // $str = explode("?",$str);
 
 
-##################################
-# Array ( [scheme] => http [host] => www.baiduc.com [path] => /dir/doc/index.php [query] => id=123&name=user [fragment] => testid )
-#
+############## print ####################
+/* Array ( 
+	[scheme] => http 
+	[host] => www.baiduc.com 
+	[path] => /dir/doc/index.php 
+	[query] => id=123&name=user 
+	[fragment] => testid 
+	)
+*/
