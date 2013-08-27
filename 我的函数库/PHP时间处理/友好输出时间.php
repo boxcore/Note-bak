@@ -1,6 +1,7 @@
 <?php
 /**
  * 友好输出时间
+ * @param $time 传入时间戳
  */
 function mdate($time = NULL) {
     $text = '';
