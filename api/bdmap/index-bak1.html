@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;overflow: hidden;margin:0;}
+        #allmap {margin-right: 300px;height: 100%;overflow: hidden;}
+        #result {border-left:1px dotted #999;height:100%;width:295px;position:absolute;top:0px;right:0px;font-size:12px;}
+        dl,dt,dd,ul,li{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        dt{
+            font-size:14px;
+            font-family:"微软雅黑";
+            font-weight:bold;
+            border-bottom:1px dotted #000;
+            padding:5px 0 5px 5px;
+            margin:5px 0;
+        }
+        dd{
+            padding:5px 0 0 5px;
+        }
+        li{
+            line-height:28px;
+        }
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2f18a21f61a57e50df7511a057da7002"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+    <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
+    <title>SearchInfoWindow</title>
+</head>
+<body>
+<div id="allmap" style="overflow:hidden;zoom:1;position:relative;">	
+    <div id="map" style="height:100%;-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;"></div>
+    <div id="showPanelBtn" style="position:absolute;font-size:14px;top:50%;margin-top:-95px;right:0px;width:20px;padding:10px 10px;color:#999;cursor:pointer;text-align:center;height:170px;background:rgba(255,255,255,0.9);-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;font-family:'微软雅黑';font-weight:bold;">显示检索结果面板<br/>&lt;</div>
+    <div id="panelWrap" style="width:0px;position:absolute;top:0px;right:0px;height:100%;overflow:auto;-webkit-transition: all 0.5s ease-in-out;transition: all 0.5s ease-in-out;">
+        <div style="width:20px;height:200px;margin:-100px 0 0 -10px;color:#999;position:absolute;opacity:0.5;top:50%;left:50%;">此处用于展示结果面板</div>
+        <div id="panel" style="position:absolute;"></div>
+    </div>
+</div>
+
+<div id="result">
+<!--     <form action="" method="post"> -->
+        <div id="r-result">
+    请输入:<br />
+    <img src="map_start.gif" alt=""><input type="text" id="suggestId" size="20" value="百度" style="width:150px;" /></div><!-- <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto;">
+</div> -->
+        <!-- <input type="submit" value="submit"> -->
+    <!-- </form> -->
+    <br>
+    <input type="button" value="驾车" onclick="mDriving()"/>
+    <hr>
+    <!-- <div id="panel" style="position:absolute;overflow:scroll"></div> -->
+   
+
+</div>
+
+<script type="text/javascript">
+    var map = new BMap.Map('map');
+    var poi = new BMap.Point(116.307852,40.057031);
+    map.centerAndZoom(poi, 16);
+    map.enableScrollWheelZoom();
+
+    var content = '<div style="margin:0;line-height:20px;padding:2px;">' +
+                    '<img src="../img/baidu.jpg" alt="" style="float:right;zoom:1;overflow:hidden;width:100px;height:100px;margin-left:3px;"/>' +
+                    '地址：北京市海淀区上地十街10号<br/>电话：(010)59928888<br/>简介：百度大厦位于北京市海淀区西二旗地铁站附近，为百度公司综合研发及办公总部。' +
+                  '</div>';
+
+    //创建检索信息窗口对象
+    var searchInfoWindow = null;
+	searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {
+			title  : "百度大厦",      //标题
+			width  : 290,             //宽度
+			height : 105,              //高度
+			panel  : "panel",         //检索结果面板
+			enableAutoPan : true,     //自动平移
+			searchTypes   :[
+				BMAPLIB_TAB_SEARCH,   //周边检索
+				BMAPLIB_TAB_TO_HERE,  //到这里去
+				BMAPLIB_TAB_FROM_HERE //从这里出发
+			]
+		});
+    var marker = new BMap.Marker(poi); //创建marker对象
+    // marker.enableDragging(); //marker可拖拽
+    marker.addEventListener("click", function(e){
+	    searchInfoWindow.open(marker);
+    })
+    map.addOverlay(marker); //在地图中添加marker
+    // searchInfoWindow.open(marker); //在marker上打开检索信息串口
+  
+
+    function $(id){
+        return document.getElementById(id);
+    }
+
+    var isPanelShow = false;
+    //显示结果面板动作
+    $("showPanelBtn").onclick = function(){
+        if (isPanelShow == false) {
+            isPanelShow = true;
+            $("showPanelBtn").style.right = "300px";
+            $("panelWrap").style.width = "300px";
+            $("map").style.marginRight = "300px";
+            $("showPanelBtn").innerHTML = "隐藏检索结果面板<br/>>";
+        } else {
+            isPanelShow = false;
+            $("showPanelBtn").style.right = "0px";
+            $("panelWrap").style.width = "0px";
+            $("map").style.marginRight = "0px";
+            $("showPanelBtn").innerHTML = "显示检索结果面板<br/><";
+        }
+    }
+
+
+
+//搜索框测试
+
+
+function G(id) {
+    return document.getElementById(id);
+}
+
+// var map = new BMap.Map("l-map");
+// map.centerAndZoom("北京",12);                   // 初始化地图,设置城市和地图级别。
+
+var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+    {"input" : "suggestId"
+    ,"location" : map
+});
+
+ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+    var str = "";
+    var _value = e.fromitem.value;
+    var value = "";
+    if (e.fromitem.index > -1) {
+        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    }    
+    str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+    
+    value = "";
+    if (e.toitem.index > -1) {
+        _value = e.toitem.value;
+        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    }    
+    str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+    G("searchResultPanel").innerHTML = str;
+});
+
+var myValue;
+ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+var _value = e.item.value;
+    myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    // G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+    
+    setPlace();
+});
+
+
+
+
+function mDriving(){
+    // var myValue='';
+    myValue = document.getElementById("suggestId").value;
+    // var endPlace = document.getElementById("endInput").value;
+    // alert(myValue);
+    setPlace();
+}
+
+
+
+function setPlace(){
+    // alert(123);
+    // alert(myValue);
+    map.clearOverlays();    //清除地图上所有覆盖物
+    function myFun(){
+        var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+        map.centerAndZoom(pp, 18);
+        map.addOverlay(new BMap.Marker(pp));    //添加标注
+    }
+    var local = new BMap.LocalSearch(map, { //智能搜索
+      onSearchComplete: myFun
+    });
+    // local.search(myValue);
+
+
+    var transit = new BMap.TransitRoute(map, {
+      renderOptions: {map: map,panel:"panel"},
+      policy:BMAP_TRANSIT_POLICY_AVOID_SUBWAYS   //不乘地铁  
+        //BMAP_TRANSIT_POLICY_LEAST_TIME    最少时间。
+        //BMAP_TRANSIT_POLICY_LEAST_TRANSFER    最少换乘。
+        //BMAP_TRANSIT_POLICY_LEAST_WALKING 最少步行。
+        //BMAP_TRANSIT_POLICY_AVOID_SUBWAYS 不乘地铁。(自 1.2 新增)
+    });
+    transit.search(myValue, poi);
+}
+
+// function setPlace(){
+    //     map.clearOverlays();    //清除地图上所有覆盖物
+    //     function myFun(){
+    //         var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+    //         map.centerAndZoom(pp, 18);
+    //         map.addOverlay(new BMap.Marker(pp));    //添加标注
+    //     }
+    //     var local = new BMap.LocalSearch(map, { //智能搜索
+    //       onSearchComplete: myFun
+    //     });
+    //     local.search(myValue);
+    // }
+
+
+//多公交路线
+
+    // var map = new BMap.Map("allmap");            // 创建Map实例
+    // map.centerAndZoom(new BMap.Point(116.404, 39.915), 12);
+    // var transit = new BMap.TransitRoute(map, {
+    //   renderOptions: {map: map,panel:"panel"},
+    //   policy:BMAP_TRANSIT_POLICY_AVOID_SUBWAYS   //不乘地铁  
+    //     //BMAP_TRANSIT_POLICY_LEAST_TIME    最少时间。
+    //     //BMAP_TRANSIT_POLICY_LEAST_TRANSFER    最少换乘。
+    //     //BMAP_TRANSIT_POLICY_LEAST_WALKING 最少步行。
+    //     //BMAP_TRANSIT_POLICY_AVOID_SUBWAYS 不乘地铁。(自 1.2 新增)
+    // });
+    // transit.search("王府井", "西单");
+
+
+
+
+
+</script>
+
+</body>
+</html>
+</script>

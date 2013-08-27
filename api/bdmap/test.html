@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="result">
+        <div id="r-result">
+    请输入:<br />
+    <img src="map_start.gif" alt=""><input type="text" id="suggestId" size="20" value="百度" style="width:150px;" /></div>
+    <br>
+    <input type="button" value="驾车" onclick="mDriving()"/>
+    <hr>
+    <div id="panel" style="position:absolute;"></div>
+   
+
+</div>
+</body>
+<script>
+	function mDriving(){
+    var myValue = document.getElementById("suggestId").value;
+    // var endPlace = document.getElementById("endInput").value;
+    alert(myValue);
+    setPlace();
+}
+</script>
+</html>
