@@ -42,6 +42,10 @@ function getPrice($a,$b,$c){
 	echo "<br>$v";
 }
 
+function checkValue($v){
+	fopen('price.txt', 'a+')
+}
+
 getPrice($a, $b, $c);
 
 

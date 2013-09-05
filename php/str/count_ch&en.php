@@ -1,8 +1,10 @@
-﻿<?php
-	$str = '中a国1人b民';
+<?php
+	header('content-type:text/html; charset=utf8');
+	// $str = '中a国1人b民,,';
+	$str = '，，，， ,,,, ';
 	echo $str;
 	echo '<hr>';
-	countstr($str);
+	echo countstr($str);
 	/**
 	$a 		php里utf8字符集下，中文3个，英文1个
 	$b 		以utf8算，中文1个，英文1个
@@ -15,8 +17,8 @@
 	function countstr($str){
 		$a = strlen($str);
 		$b = mb_strlen($str,'utf8');
+		$c = preg_
 		$zw = ($a - $b) /2;
 		$en = $b - $zw;
-		echo $zw.'个中文';
-		echo $en.'个英文';
+		return "文字统计信息：总共{$b}个字符，{$zw} 个中文，{$en}个英文。";
 	}
