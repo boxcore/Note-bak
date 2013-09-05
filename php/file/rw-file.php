@@ -9,6 +9,8 @@ $str = date('Y-m-d H:i:s',time())."++++ \n";
 $handle = fopen("hello.txt", 'a+');
 fwrite($handle, $str);
 
+file_put_contents('text.txt',date('Y-m-d H:i:s',time())."++++ \n",FILE_APPEND); //如果文件不存在，将自动创建并写入内容
+
 if(file_exists('hello.txt')){
 	echo "exists:";
 	print_r(fileinode('hello.txt'));

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网站首页</title>
+	<script src="../jquery.js"></script>
+	<link rel="stylesheet" href="index.css">	
+</head>
+<body>
+	<div id="body">
+	<div class="header"></div>
+		<div class="navigation">
+			<ul class="navigation_ul_1">
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">首页</a>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">PHP</a>
+						<ul class="navigation_ul_2">
+							<li class="navigation_li_2">
+								<a href="" class="navigation_a_2">数组</a>
+							</li>
+							<li class="navigation_li_2">
+								<a href="" class="navigation_a_2">对象</a>
+							</li>
+						</ul>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">Mysql</a>
+						<ul class="navigation_ul_2">
+							<li class="navigation_li_2">
+								<a href="" class="navigation_a_2">数组</a>
+							</li>
+							<li class="navigation_li_2">
+								<a href="" class="navigation_a_2">对象</a>
+							</li>
+						</ul>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">Linxu</a>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">JavaScript</a>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">HTML</a>
+				</li>
+				<li class="navigation_li_1">
+					<a href="" class="navigation_a_1">CSS</a>
+				</li>
+			</ul>
+		</div>
+	</div>	
+</body>
+<script>
+	$(".navigation_ul_2").hide();
+	$(".navigation_li_1").mouseover(function(){
+		$(this).css('background','#3E4552');
+		$(this).children(".navigation_ul_2").show();
+	});
+	$(".navigation_li_1").mouseout(function(){
+		$(this).css('background','#000000');
+		$(this).children(".navigation_ul_2").hide();
+	});
+	$(".navigation_li_2").mouseover(function(){
+		$(this).css({'background':'#000000'});
+	});
+	$(".navigation_li_2").mouseout(function(){
+		$(this).css({'background':'#3E4552'});
+	});
+</script>
+</html>

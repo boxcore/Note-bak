@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>get drag</title>
+</head>
+<body>
+	<div drag="true" index="1">1111</div> 
+	<div drag="true" index="2">test</div> 
+	<div drag="true">5555</div>
+	<form action="">
+		<select name="do" id="d">
+			<option value="a" drag='do' id='a'>aa</option>
+		</select>
+	</form>
+</body>
+<script src="jq.js"></script>
+<script>
+	var a = $('div[drag]').eq(0).attr('index');
+	// alert(a);
+
+	// var b = $('div[drag]').eq(2).html();
+	var b = $('div[drag]').eq(2).text();
+	alert(b);
+	alert($('#a').val());
+</script>
+</html>
