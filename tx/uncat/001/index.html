@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+  <title>jquery特效,css群:276358738,js touch触屏特效,视频教程</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <link rel="stylesheet" href="css/163css.css" />
+  <script>
+  $(function() {
+	$('.pop').dialog({
+		autoOpen: false,
+		  height: 300,
+		  width: 350,
+		  modal: true,
+		  buttons:"Create an account"
+	})
+	$('.addbtn').click(function(){
+		$('.pop').dialog( "open" );
+	
+	})
+	$('.tjbtn').click(function(){
+		 var id=$('#txt-id').val();
+		 var con=$('#txt-con').val();
+		 var info="<tr><td>"+id+"</td><td>"+con+"</td></tr>";
+		 $(info).appendTo('.tab01-kf');
+	
+	})
+  });
+  </script>
+</head>
+<body>
+<div class="box-163css">
+    <table class="tab01-kf">
+        <tr>
+            <th class="t1">ID</th>
+            <th class="t2">内容</th>
+        </tr>
+        <tr>
+            <td class="t1">1221212</td>
+            <td class="t2">傅莹回应日记者质疑：民众望中国更强硬</td>
+        </tr>
+    </table>
+    <div class="add"><span class="addbtn">添加</span></div>
+</div>
+<div class="pop" title="请发表意见">
+    <p>ID：&nbsp;&nbsp;<input type="text" class="text" id="txt-id"><br/>
+    意见：<input type="text" class="text" id="txt-con"></p>
+    <input type="submit" class="tjbtn" value="提交">
+</div>
+</body>
+</html>

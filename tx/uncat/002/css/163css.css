@@ -1,0 +1,23 @@
+@charset "utf-8";
+
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em{margin:0;padding:0;border:0;}
+ul,ol,li{list-style:none;}
+input,button{margin:0;font-size:12px;vertical-align:middle;}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;  text-align:left; margin:0 auto;}
+table{border-collapse:collapse;border-spacing:0;}
+b,em,i{ font-style:normal; font-weight:normal;}
+h1,h2,h3,h4{ font-size:14px;}
+h5{ font-size:12px;}
+h6{ font-size:12px;font-style:normal;}
+
+.box-163css{position:relative; width:980px; margin:20px auto;OVERFLOW: hidden; HEIGHT: 324px}
+.pageLR {Z-INDEX: 1000; LEFT: 0px; WIDTH: 100%; top:80px; position:absolute; }
+.pageLeft {BACKGROUND: url(../images/pageLeft.png) no-repeat left top; FLOAT: left; WIDTH: 32px; CURSOR: pointer; HEIGHT: 48px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/pageLeft.png"); _background: none}
+.pageLOver {BACKGROUND: url(../images/pageLeftOver.png) no-repeat left top; FLOAT: left; WIDTH: 32px; CURSOR: pointer; HEIGHT: 48px; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/pageLeftOver.png"); _background: none}
+.pageRight {BACKGROUND: url(../images/pageRight.png) no-repeat right top; FLOAT: right; WIDTH: 32px; CURSOR: pointer; HEIGHT: 48px;_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/pageRight.png"); }
+.pageROver {BACKGROUND: url(../images/pageRightOver.png) no-repeat right top; FLOAT: right; WIDTH: 32px; CURSOR: pointer; HEIGHT: 48px;_background: none; _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/pageRightOver.png"); }
+
+.rexiaoPic {OVERFLOW: hidden; WIDTH: 980px; HEIGHT: 243px}
+.sell_order {BACKGROUND: url(../images/rexiaoPicBg2.gif) repeat-x 0px 0px; WIDTH: 9999px; POSITION: absolute}
+.rexiaoPic LI {BACKGROUND: url(../images/rexiaoPicBg.gif) no-repeat right center; FLOAT: left; WIDTH: 196px}

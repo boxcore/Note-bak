@@ -1,0 +1,19 @@
+/* CSS Document */
+body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em{margin:0;padding:0;border:0;}
+ul,ol,li{list-style:none;}
+input,button{margin:0;font-size:12px;vertical-align:middle;}
+body{font-size:12px;font-family:Arial, Helvetica, sans-serif;  text-align:center; margin:0 auto; color:#2b2b2b}
+table{border-collapse:collapse;border-spacing:0;}
+
+a{color:#2b2b2b;text-decoration:none;}
+a:hover{color:#c00; text-decoration:underline;}
+
+.box-163css{ width:500px; text-align:left; margin:20px auto; text-align:center;}
+.tab01-kf{ width:100%; margin-bottom:20px;}
+.tab01-kf th{ border:1px solid #ccc; height:24px; line-height:24px;}
+.tab01-kf td{ border:1px solid #ccc; height:24px; line-height:24px;}
+.addbtn,.tjbtn{ border:none; display:inline-block; cursor:pointer; letter-spacing:4px; background:url(../images/btn.gif) no-repeat; 
+width:97px; margin:0 auto; height:34px; text-align:center; font-size:14px;  line-height:34px;}
+
+.pop .text{ width:280px; height:28px; line-height:28px; border:1px solid #ccc; margin-bottom:12px;}
+.pop p{ padding-top:30px;}
