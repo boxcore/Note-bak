@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Link Opera</title>
+	<script src="../jq.js"></script>
+	<style type="text/css">
+		#menu {width:300px;}
+		.has_children {background: #555; color: #fff; cursor: pointer;}
+		.highlight {color: #fff; background: green;}
+		div {padding: 0; margin: 10px 0;}
+		div a {background: #888; display: none; float: left; width: 300px;}
+	</style>
+</head>
+<body>
+	<div id="menu">
+		<div class="has_children">
+			<span>001</span>
+			<a href="">01</a>
+			<a href="">02</a>
+			<a href="">03</a>
+			<a href="">04</a>
+			<a href="">05</a>
+			<a href="">06</a>
+			<a href="">07</a>
+		</div>
+		<div class="has_children">
+			<span>001</span>
+			<a href="">01</a>
+			<a href="">02</a>
+			<a href="">03</a>
+			<a href="">04</a>
+			<a href="">05</a>
+			<a href="">06</a>
+			<a href="">07</a>
+		</div>
+		<div class="has_children">
+			<span>001</span>
+			<a href="">01</a>
+			<a href="">02</a>
+			<a href="">03</a>
+			<a href="">04</a>
+			<a href="">05</a>
+			<a href="">06</a>
+			<a href="">07</a>
+		</div>
+	</div>
+	<script>
+		$(".has_children").click(function(){
+			$(this).addClass("highlight").children("a").show().end()
+			.siblings().removeClass("highlight").children("a").hide();
+		});
+	</script>
+</body>
+</html>
