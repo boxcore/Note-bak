@@ -1,7 +1,7 @@
 <?php
-#Vars - written at 2013-09-04
+#Vars - written at 2013-09-10
 $dbhost="localhost";
-$dbname="boxcore_boxcore";
+$dbname="boxcore_myshop";
 $dbuser="boxcore";
 $dbpass="abc654321boxcore";
 $dbport=3306;
