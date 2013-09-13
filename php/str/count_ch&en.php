@@ -17,7 +17,6 @@
 	function countstr($str){
 		$a = strlen($str);
 		$b = mb_strlen($str,'utf8');
-		$c = preg_
 		$zw = ($a - $b) /2;
 		$en = $b - $zw;
 		return "文字统计信息：总共{$b}个字符，{$zw} 个中文，{$en}个英文。";
