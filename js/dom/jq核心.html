@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取DOM</title>
+	<script src="../jq.js"></script>
+	<style>
+		body{margin: 0; padding: 0;}
+		#alldom{margin: 0 auto; }
+		.cid{padding: 10px;}
+	</style>
+</head>
+<body>
+	<h1></h1>
+	<div id="foo">my in <span style="color:red">do now</span> here i am</div>
+
+	<div id="alldom">
+		<div class="cid">aaaa</div>
+		<div class="cid">
+			<span class="b1">bbbb</span>
+			<a href="#" class="b2">test #</a>
+		</div>
+
+		<div class="cid">cccc</div>
+		<div class="cid">ddd</div>
+	</div>
+
+	<div id="ufo">
+		<img /><img />
+	</div>
+	<hr>
+	<div id="result"></div>
+</body>
+<script>
+	// 以每一个匹配的元素作为上下文来执行一个函数
+	$("img").each(function(i){
+		this.src = "test" + i + ".jpg";
+	});
+
+	// jQuery 对象中元素的个数
+	var a = $("img").size();
+	var b = $("img").length; 
+	$("#result").html(b);
+</script>
+</html>

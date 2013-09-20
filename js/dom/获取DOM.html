@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取DOM</title>
+	<script src="../jq.js"></script>
+	<style>
+		body{margin: 0; padding: 0;}
+		#alldom{margin: 0 auto; }
+		.cid{padding: 10px;}
+	</style>
+</head>
+<body>
+	<h1>获取DOM</h1>
+	<div id="foo">my in <span style="color:red">do now</span> here i am</div>
+
+	<div id="alldom">
+		<div class="cid">aaaa</div>
+		<div class="cid">
+			<span class="b1">bbbb</span>
+			<a href="#" class="b2">test #</a>
+		</div>
+
+		<div class="cid">cccc</div>
+		<div class="cid">ddd</div>
+	</div>
+	<hr>
+	<div id="result"></div>
+</body>
+<script>
+	var a = $("#foo").html();
+	var b = document.getElementById("foo").innerHTML;
+</script>
+</html>

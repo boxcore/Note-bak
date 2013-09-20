@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Learn</title>
+	<script src="../jq.js"></script>
+</head>
+<body>
+	<h3>example</h3>
+	<p title="chose the fruit you like">choce you like</p>
+	<ul id="uid">
+		<li>001</li>
+		<li>002</li>
+		<li>003</li>
+	</ul>
+	<div id="did">this is id?</div>
+	
+</body>
+<script>
+	// //js dom
+	// var domObj = document.getElementById("did");
+	// var ObjHTML = domObj.innerHTML;
+	// alert(ObjHTML);
+
+	// //jq dom
+	// var a = $("#uid").html();
+	// alert(a);
+
+	//jq obj转dom obj
+	var $variable = $("#uid").html();
+	var variable = $variable;
+	// alert(variable);
+
+	var $a = $("#did");
+	var a = $a[0];
+	alert(a.innerHTML);
+
+	var $b = $("#uid");
+	var b = $b.get(0);
+	alert(b.innerHTML);
+</script>
+</html>

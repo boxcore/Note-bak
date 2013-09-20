@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取DOM</title>
+	<script src="../jq.js"></script>
+</head>
+<body>
+	<h1>获取DOM</h1>
+	<div id="foo">my in <span style="color:red">do now</span> here i am</div>
+</body>
+<script>
+	var a = $("#foo").html();
+	var b = document.getElementById("foo").innerHTML;
+	alert(a);
+	alert(b);
+</script>
+</html>

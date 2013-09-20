@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Learn</title>
+</head>
+<body>
+	<h3>example</h3>
+	<p title="chose the fruit you like">choce you like</p>
+	<div id="did">this is id?</div>
+	<!-- 引入prototype -->
+	<script src="../prototype.js"></script>
+	<!-- 引入jq -->
+	<script src="../jq.js"></script>
+	<script>
+		/* 方法一 将$变量的控制权交给其他 */
+		jQuery.noConflict();//将变量$的控制权移交给prototype
+
+		jQuery(function(){ //使用jq
+			jQuery("p").click(function(){
+				alert( jQuery(this).text() );
+			})
+		})
+
+		/* 方法二  自定义一个快捷方式 */
+		var $j = jQuery.noConflict(); //自定义一个快捷方式
+		$j(function(){	//；利用自定义快捷方式--$j
+			$j("p").click(function(){
+				alert( $j(this).text()+"自定义" );
+			})
+		})
+
+		/* 方法三 保留$变量的控制权，又不会与其他库冲突 */
+		jQuery.noConflict();
+		jQuery(function($){
+			$("p").click(function(){
+				alert( $(this).text()+"保留他的方法" );
+			})
+		})
+
+		/* 方法三 的第二种方式 */
+		jQuery.noConflict();//将变量$控制权让渡给prototype.js	
+		(function($){ //定义匿名函数并设置形参为$
+			$(function(){ //匿名函数内部的$均为jQuery
+				$("p").click(function(){//继续使用$()方法
+					alert( $(this).text() );
+				});
+			});
+		}) (jQuery);//执行匿名函数并传递实参jQuery
+
+		$("p").style.display = "none"; //使用prototype
+	</script>
+</body>
+<script>
+	
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Learn</title>
+	<script src="../jq.js"></script>
+	<style>
+		div, span, p { width: 140px; height: 140px; margin: 5px; background: #aaa; border: #000 1px solid; float: left; font-size: 17px; font-family: Verdana;}
+		div.mini { width: 55px; height: 55px; background-color: #aaa; font-size: 12px; }
+	</style>
+</head>
+<body>
+	<div class="one" id="one">
+		id=one, class=one : div
+		<div class="mini">class=mini</div>
+	</div>
+
+	<div id="two" class="one" title="test">
+		id=two, class=one, title=test
+		<div class="mini" title="other">class=mini, title=other</div>
+		<div class="mini" title="test">class=mini, title=test</div>
+	</div>
+
+	<div class="one">
+		<div class="mini">class=mini</div>
+		<div class="mini">class=mini</div>
+		<div class="mini">class=mini</div>
+		<div class="mini"></div>
+	</div>
+
+	<div class="one">
+		<div class="mini">class=mini</div>
+		<div class="mini">class=mini</div>
+		<div class="mini">class=mini</div>
+		<div class="mini" title="test">class=mini, title=test</div>
+	</div>
+
+	<div class="none" style="display: none;">style=none</div>
+
+	<div class="hide">class=hide</div>
+
+	<div>
+		含input的type的“hidden”的div <input type="hidden" size="8">
+	</div>
+	
+	<span id="mover">正在执行动画的span标签</span>
+</body>
+<script>
+	
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Learn</title>
+	<script src="../jq.js"></script>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<div class="test">
+		<div style="display:none">001</div>
+		<div style="display:none">002</div>
+		<div style="display:none">003</div>
+		<div class="test" style="display:none">004</div>
+	</div>
+	<div class="test" style="display:none">005</div>
+	<div class="test" style="display:none">006</div>
+</body>
+<script>
+	var $a = $(".test :hidden");
+	var $b = $(".test:hidden");
+	alert($a.length);
+	alert($b.length);
+</script>
+</html>

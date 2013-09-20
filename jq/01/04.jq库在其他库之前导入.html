@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery Learn</title>
+</head>
+<body>
+	<h3>example</h3>
+	<p title="chose the fruit you like">choce you like</p>
+	<div id="did">this is id?</div>
+
+	<!-- 引入jq -->
+	<script src="../jq.js"></script>
+	<!-- 引入prototype -->
+	<script src="../prototype.js"></script>
+	
+	<script>
+
+		jQuery(function(){ //直接使用jQuery，无需调用noconflict
+			jQuery("p").click(function(){
+				alert( jQuery(this).text() );
+			})
+		})	
+
+		$("p").style.display = "none"; //使用prototype
+	</script>
+</body>
+<script>
+	
+</script>
+</html>
