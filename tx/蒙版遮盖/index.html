@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../jquery.js"></script>
+	<link rel="stylesheet" href="../reset.css">
+</head>
+<body>
+<style>
+div {margin: 0; padding: 0;}
+.w{width: 100%;}
+.w980{width: 980px; margin: 0 auto;}
+.w1210{width: 1210px; margin: 0 auto;}
+.blank10{width: 100%;height: 10px;display: block;}
+	/*layout*/
+.layout { overflow:visible; }
+.layout ul { overflow:hidden;  position:relative; left:-15px; width:1225px; _width:1240px; }
+.layout ul li { float:left; width:160px; height:74px; margin-left:15px; overflow:hidden; position:relative; }
+.dis_none { display:none; }
+.layout ul li .lay_photo { display:block; height:74px; }
+.layout ul li .layh_bg { position:absolute; bottom:0; left:0; width:160px; height:74px; background:#000; filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6; }
+.layout ul li .lay_hover {  position:absolute; top:74px; left:0; width:150px; height:64px; padding:5px;  }
+.layout ul li .lay_hover h4 a { font-size:16px; font-family:Microsoft YaHei; font-weight:normal; height:20px; margin-bottom:4px; overflow:hidden; line-height:18px;  color:#fff; display:block;  }
+.layout ul li .lay_hover p { height:40px; overflow:hidden;  text-indent:2em; background:url(../images/collect.gif) no-repeat  0 -51px; line-height:20px; }
+/*one_screen*/
+</style>
+
+	<div class="blank10"></div>
+	<div class="blank10"></div>
+	<div class="w1210">
+		<div class="layout">
+			<ul>
+		        <li class="bok">
+		            <a target="_blank" stat="ad-1298" href="" class="lay_photo" itemid="0"><img src="http://pic.7808.cn/static/images/default.jpg" width="160" height="74" alt="" title="">
+		            </a><div class="C">
+		                
+		                <div class="lay_hover" style="height:150px;"><a target="_blank" stat="ad-1298" href="" class="lay_photo" itemid="0">
+		                    </a><h4><a target="_blank" stat="ad-1298" href="">广告位出售！</a></h4>
+		                    <p><a target="_blank" stat="ad-1298" href="">暂无评语</a></p>
+		                </div>
+		            </div>
+		            
+		        </li>
+		        <li class="bok">
+		            <a target="_blank" stat="ad-1299" href="" class="lay_photo" itemid="0"><img src="http://pic.7808.cn/static/images/default.jpg" width="160" height="74" alt="" title="">
+		            </a>
+
+
+	            	<div class="lay_hover" style="height:150px;"><a target="_blank" stat="ad-1299" href="" class="lay_photo" itemid="0"></a>
+	            		<div class="layh_bg">
+		            		<h4>
+		            			<a target="_blank" stat="ad-1299" href="">广告位出售！</a>
+		            		</h4>
+		                    <p>
+		                    	<a target="_blank" stat="ad-1299" href="">暂无评语</a>
+		                    </p>
+	                    </div>
+	                </div>
+
+		            
+		        </li>
+		    </ul>
+		<script>
+		    $(function(){
+		        $(".bok").hover(
+		            function(){
+		                $(this).find(".lay_hover").animate({top: '0px'}, 100).attr({style:"z-index:1;"});
+		            },
+		            function() {
+		                $(this).find(".lay_hover").animate({top: '74px'}, 200);
+		            }
+		        );
+		    });
+		</script>
+		</div>
+	</div>
+
+</body>
+</html>
