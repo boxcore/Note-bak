@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网友小凯分享原创banner横向滚动Jquery特效</title>
+<meta name="Keywords" content="Jquery,Jquery插件,Jquery资源,Jquery特效,div+css,图片滚动,banner横向滚动" />
+<meta name="description" content="JquerySchool是一个专门分享jquery资源、jquery插件、jquery特效的一个网站,完全开放源代码,把实际开发中应用最多、最实用的Jquery资源抽取出来再加以精心编排,让广大网友能以最短的时间、花最少的精力去真正掌握jQuery开发的知识。" />
+<style type="text/css">
+body {margin-left: 0px;margin-top: 0px;margin-right: 0px;margin-bottom: 0px;}
+* {list-style:none; border:none; margin: 0px; padding: 0px;}
+.wrapper {width:1000px; display:block; height:3900px; margin:0 auto;overflow:hidden;}
+.banner {width:1000px; height:375px; background:url(images/bannerbg.jpg) repeat-x bottom; position:relative; overflow:hidden; float:left; }
+.bannerul {height:335px; left:0; top:0; position:relative; z-index:2;}
+.bannerul li { float:left;}
+.bannerd { float:left; overflow:hidden; margin-top:13px; display:inline; width:1000px; text-align:center;}
+.bannerd img { margin:0 7px; display:inline; cursor:pointer;}
+</style>
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script language="javascript" src="js/xkslide.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <!--banner特效开始-->
+  <div class="banner">
+    <ul class="bannerul">
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+      <li><img src="images/1.jpg" width="1000" height="335" /></li>
+    </ul>
+    <div class="bannerd"> </div>
+  </div>
+  <!--banner特效结束-->
+</div>
+</body>
+</html>

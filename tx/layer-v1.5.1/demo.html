@@ -1,0 +1,84 @@
+﻿<!doctype html>
+<html>
+<head>
+<title>layer-更懂你的web弹窗解决方案</title>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="layer/layer.js"></script>
+<style>
+html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
+pre{font-family:'微软雅黑'}
+.box{padding:20px; background-color:#fff; margin:50px 100px; border-radius:5px;}
+.box a{padding-right:15px;}
+#about_hide{display:none}
+.layer_text{background-color:#fff; padding:20px;}
+.layer_text p{margin-bottom: 10px; text-indent: 2em; line-height: 23px;}
+</style>
+<body>
+<div class="box">
+
+
+
+<script>
+(function(){
+
+layer.alert('hello,亲爱的朋友，当你看到这个的时候，意味着你已将layer下载到你的本地，并正常地运行了它。layer是一款基于web的弹窗解决方案，旨在为你的产品增强体验。',9,false);
+
+$('#about').on('click',function(event){
+	event.preventDefault();
+	$.layer({
+		type : 1,
+		offset : ['100px',''],
+		shade: ['','',false],
+		area : ['900px','auto'],
+		page : {dom : '#about_hide'}
+	});
+});
+
+
+$('#suggest').on('click',function(event){
+	event.preventDefault();
+	$.layer({
+		type : 2,
+		fix : false,
+		shade : [0.8 , '#E3E3E3' , true],
+		shadeClose : true,
+		border : [10 , 0.7 , '#272822', true],
+		title : ['',false],
+		offset : ['30px',''],
+		area : ['960px','9500px'],
+		iframe : {src : $(this).attr('href')}
+	});
+});
+
+
+$('#wish').on('click',function(event){
+	event.preventDefault();
+	$.layer({
+		type: 2,
+		title: ['',false],
+		offset: ['100px',''],
+		closeBtn: [0,false],
+		area: ['590px', '380px'],
+		border: [10 , 0.5 , '#EF8016', false],
+		iframe: {src : 'http://sentsin.com/hello/year2013.html'},
+		success:function(layerDom){
+			layerDom.append('<div id="y2013_move" style="height:110px; width:590px; cursor:move; position:absolute; top:0; left:0; z-index:20000000;"></div><div id="y2013_close" style="position:absolute;right:0; top:0; width:40px; height:40px; cursor:pointer; z-index:20000001;"><div>');
+			this.move = ['#y2013_move', true];
+			layer.setMove();
+			$('#y2013_close').on('click', function(){
+				var index = layer.getIndex(this);
+				layer.close(index);
+			});
+		}
+	});
+	layer.tips('许个好愿吧', '#wish', 5);
+});
+layer.ready(function(){
+	layer.tips('一定会实现噢', '#wish');
+});
+
+})();
+</script>
+</body>
+</html>

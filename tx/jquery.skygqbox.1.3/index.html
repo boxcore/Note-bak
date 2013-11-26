@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="cufon-active cufon-ready" style="overflow-y: scroll; overflow-x: hidden; height: 100%;" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Jquery简单的弹出层带遮罩插件</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="keywords" content="Jquery简单的弹出层带遮罩插件|Jquery教程-Jquery学习-Jquery插件教程-Jquery插件学习">
+<meta name="description" content="Jquery简单的弹出层带遮罩插件是一款非常小巧的Jquery弹出层插件，支持弹出位置个性选择。">
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.skygqbox.1.3.js"></script>
+</head>
+<body>
+<div id="wrapper">
+	<div id="site">
+		<div id="title">
+			<h1>Jquery简单的弹出层带遮罩插件</h1>
+		</div>
+		<div class="code">
+			<input type="button" class="button" id="test1" value="弹出一个居中的带遮罩的登录页面">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#test1").click(function(){
+	$('#login').skygqbox();
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" id="autoClose" value="弹出一个提示信息，2秒后自动消失">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#autoClose").click(function(){
+	var message = "不好意思呀！我来也匆匆去也匆匆，<br>实在太忙了，有太多的东西要学习了，<br>像Jquery、Jquery插件、Wordpress插件、PHP啦，<br>都要学呀，哥没空老是在这杵着呢!<br>两秒后闪人！别想念哥呀！";
+	$(message).skygqbox({autoClose:2000});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕右上的层" id="right_top">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#right_top").click(function(){
+	$('#login').skygqbox({position:"right_top"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button"  value="弹出一个显示在屏幕靠右居中的层" id="right_middle">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#right_middle").click(function(){
+	$('#login').skygqbox({position:"right_middle"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕右下的层" id="right_bottom">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#right_bottom").click(function(){
+	$('#login').skygqbox({position:"right_bottom"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕靠上居中的层" id="top_middle">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#top_middle").click(function(){
+	$('#login').skygqbox({position:"top_middle"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕左上的层" id="left_top">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#left_top").click(function(){
+	$('#login').skygqbox({position:"left_top"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕靠左居中的层" id="left_middle">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#left_middle").click(function(){
+	$('#login').skygqbox({position:"left_middle"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕左下的层" id="left_bottom">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#left_bottom").click(function(){
+	$('#login').skygqbox({position:"left_bottom"});
+});
+			</pre>
+			<hr>
+			<input type="button" class="button" value="弹出一个显示在屏幕靠下居中的层" id="bottom_middle">
+			<span class="subtitle">jquery代码</span>
+			<pre class="code code-source">
+$("#bottom_middle").click(function(){
+	$('#login').skygqbox({position:"bottom_middle"});
+});
+			</pre>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+$(function(){
+	$("#test1").click(function(){
+		$('#login').skygqbox();
+	});
+	$("#test2").click(function(){
+		$.skygqbox.hide();
+	});
+	$("#autoClose").click(function(){
+		var message = "<span>不好意思呀！我来也匆匆去也匆匆，<br>实在太忙了，有太多的东西要学习了，<br>像Jquery、Jquery插件、Wordpress插件、PHP啦，<br>都要学呀，哥没空老是在这杵着呢!<br>两秒后闪人！别想念哥呀！</span>";
+		$(message).skygqbox({autoClose:2000});
+	});
+
+
+	$("#right_top").click(function(){
+		$('#login').skygqbox({position:"right_top"});
+	});
+	$("#left_middle").click(function(){
+		$('#login').skygqbox({position:"left_middle"});
+	});
+	$("#top_middle").click(function(){
+		$('#login').skygqbox({position:"top_middle"});
+	});
+	$("#bottom_middle").click(function(){
+		$('#login').skygqbox({position:"bottom_middle"});
+	});
+	$("#right_middle").click(function(){
+		$('#login').skygqbox({position:"right_middle"});
+	});
+	$("#left_top").click(function(){
+		$('#login').skygqbox({position:"left_top"});
+	});
+	$("#right_bottom").click(function(){
+		$('#login').skygqbox({position:"right_bottom"});
+	});
+	$("#left_bottom").click(function(){
+		$('#login').skygqbox({position:"left_bottom"});
+	});
+});
+</script>
+
+<div id="login" style="padding:30px;display:none">
+	<p>用户名：<input id="unseName" type="text" size="20" /></p>
+    <p class="mt10 mb10">密&nbsp;&nbsp;码：<input type="text" size="20" /></p>
+	<input type="button" value="登录"><input type="button" id="test2" value="取消">
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网友Adam'分享原创图片滑动Jquery插件(最新修正版本)</title>
+<link href="http://www.jq-school.com/tool/jc/css/public.css" rel="stylesheet" type="text/css" media="all" />
+<style>
+<!-- 
+/* jQuery jcSlider css */
+body { overflow-x:hidden; }
+.jcSlider { width:956px; position:relative; height:300px; background:url(img/sliderbg.png) no-repeat; padding:9px;}
+.imgHide { width:956px; height:300px; overflow:hidden; position:relative; }
+.imgList { height:9999%; width:9999%; position:absolute; top:0; left:0; z-index:1;}
+.imgList li { position:absolute; left:0; top:0; height:300px; width:956px; list-style:none; display:none; overflow:hidden; }
+.imgNum { position:absolute; left:0; top:0; z-index:2; display:none; }
+.imgNum dd { width:14px; height:14px; float:left; list-style:none; cursor:pointer;  margin:0 3px; overflow:hidden; }
+.imgNum dd a { display:block; height:14px; width:14px; text-indent:-999em; overflow:hidden; text-align:center; line-height:14px; background:url(img/pagination.png) no-repeat 0 0; }
+.imgNum dd a:hover,.imgNum dd.select a { background-position:0 -14px; }
+.imgPrev,.imgNext { position:absolute; left:0; top:10px; z-index:3; display:block; cursor:pointer; height:300px; width:40px; }
+.imgPrev { background:url(img/navigation-previous.png) no-repeat left center;}
+.imgNext { background:url(img/navigation-next.png) no-repeat right center;}
+
+
+-->
+</style>
+<script src="http://www.jq-school.com/js/jquery-1.7.2.min.js" language="javascript" type="text/javascript"></script>
+<script src="http://www.jq-school.com/js/jQuery-easing.js" language="javascript" type="text/javascript"></script>
+<script src="js/jQuery-jcSlider.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+<!-- 
+$(function(){
+    $("#demo1").jcSlider({
+		loadPath:'img/loading.gif',
+		arrow : false
+	});
+	
+
+});
+-->
+</script>
+</head>
+
+<body>
+
+<!-- HTML 开始 -->
+
+<!-- demo 1 -->
+
+<div id="demo1" class="jcSlider">
+    <ul class="imgList">
+        <li><a><img src="http://b3.images22.51img1.com/6000/riddick_ls/30f0184c74d88e5e4f6b2b0304a5a59c.png" alt="图片一" /></a></li>
+        <li><a><img src="http://bc.images22.51img1.com/6000/riddick_ls/c4abb1b84dc468f3da68c37898e18f09.png" alt="图片二" /></a></li>
+        <li><a><img src="http://b5.images22.51img1.com/6000/riddick_ls/5b387eab0c69dc3da4a51b6f4fb8576b.png" alt="图片三" /></a></li>
+    </ul>
+</div>
+
+</body>
+</html>
