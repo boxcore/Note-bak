@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>3级联动-Download by http://www.codefans.net</title>
+    <script src="jquery.js" type="text/javascript"></script>
+    <style>
+        .ddldisplay{ float:left;height:27px;position:relative; cursor:pointer; top:0px; left:0px; font-size:12px; margin-right:10px;}
+        .ddldisplay span{ padding-left:5px;height:27px; line-height:27px; top:200px; left:0px;}
+        .ddldisplay div{ display:none; position:absolute; top:27px; left:0px;border:1px solid #bfbfbf; border-top:none; width:280px; height:auto; overflow:hidden; background:#ffffff;}
+        .ddldisplay div a{ display:block; padding-left:5px;height:20px; line-height:20px; color:#666; text-decoration:none; background:#ffffff; float:left; width:60px;}
+        .ddldisplay div a:hover{ color:Blue; text-decoration:underline;}
+        .ddlShouhuo{width:101px;background:url(ddlAdderss.gif) no-repeat;}
+        #ddlQu div{width:140px; border-top:1px solid #d2d2d2;}
+        #ddlShi div{width:140px;}
+        ul,li,table,h1,h2,h3,h4,h5,h6,img{ list-style:none; margin:0px; padding:0px;}
+        body{ margin:0; padding:0; color:#5a5a5a;}
+    </style> 
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <div class="ddlShouhuo ddldisplay" id="ddlSheng">
+        <span id="txtSheng" runat="server"></span>
+        <div>
+	        
+        </div>
+    </div>
+    <div class="ddlShouhuo ddldisplay" id="ddlShi">
+        <span id="txtShi" runat="server"></span>
+        <div>
+	        
+        </div>
+    </div>
+    <div class="ddlShouhuo ddldisplay" id="ddlQu">
+        <span id="txtqu" runat="server"></span>
+        <div>
+	        
+        </div>
+    </div>
+    </div>
+    </form>
+</body>
+</html>
+<script>
+    $(document).ready(function(){    
+        cityArea();
+        $('.ddldisplay').hover(
+		    function(){return false;},
+		    function(){$(this).children("div").hide();$('.ddldisplay').toggle(
+			function() { $(this).children("div").show(); },
+			function() { $(this).children("div").hide(); }
+		);}
+		);
+    });
+    function cityArea() {
+        $.ajax({
+            url: "Area.xml", //地址
+            type: "GET",
+            dataType: "xml",
+            error: function(xdata) { alert("fail:"); },
+            success: function(xdata) {
+                if ($(xdata) != null) {
+                    $("#ddlSheng div").html("");
+                    for (var i = 0; i < $(xdata).find("address > province").length; i++) {
+                        $("#ddlSheng div").append("<a href='javascript:;'>" + $(xdata).find("address > province:eq(" + i + ")").attr("name") + "</a>"); ;
+                    }
+                }
+                //下面是下拉框
+                $(".ddldisplay").toggle(
+                        function() { $(this).children("div").show(); },
+                        function() { $(this).children("div").hide(); }
+                );
+                $("#ddlSheng a").click(function() {
+                    $(this).parents(".ddldisplay").find("span").text($(this).text());
+                    $("#hid2").val($("#txtSheng").text()+$("#txtShi").text()+$("#txtqu").text());
+                    var provinceName = $(this).parent().prev().text();
+                    $("#ddlShi div").html("");
+                    //根据省查找该省的所有下级市
+                    for (var i = 0; i < $(xdata).find("address > province[name='" + provinceName + "'] > city").length; i++) {
+                        $("#ddlShi div").append("<a href='javascript:;'>" + $(xdata).find("address > province[name='" + provinceName + "'] > city:eq(" + i + ")").attr("name") + "</a>");
+                    }
+                    $(this).parents(".ddldisplay").find("div").hide();
+                    $("#ddlShi a").click(function() {
+                        var provinceName = $("#ddlSheng").find("span").text(); //省
+                        var cityName = $(this).text(); //市
+                        $("#ddlShi span").text(cityName);
+                        $("#hid2").val($("#txtSheng").text()+$("#txtShi").text()+$("#txtqu").text());
+                        var country = $(xdata).find("address > province[name='" + provinceName + "'] > city[name='" + cityName + "'] > country");
+                        var len = country.length;
+                        $("#ddlQu div").html("");
+                        for (var i = 0; i < len; i++) {
+                            var countryName = $(xdata).find("address > province[name='" + provinceName + "'] > city[name='" + cityName + "'] > country:eq(" + i + ")").attr("name");
+                            $("#ddlQu div").append("<a href='javascript:;'>" + countryName + "</a>");
+                        }
+                        $(this).parents(".ddldisplay").find("div").hide();
+                        $("#ddlQu a").click(function() {
+                            $("#ddlQu span").text($(this).text());
+                            $("#hid2").val($("#txtSheng").text()+$("#txtShi").text()+$("#txtqu").text());
+                        });                        
+                    });
+                });
+                
+            }
+        });
+    }
+</script>
