@@ -1,0 +1,12 @@
+1. 公司开发机
+	ip： 192.168.15.2
+	huangchunze // huangchunze123
+	
+2. 我的虚拟开发机【lnmp】
+	ip: 192.168.15.104
+	
+	thunje // abc654321  使用的是www id和组。
+	linux账号和 smb账号一样。
+	
+
+mall.dswf.cn
