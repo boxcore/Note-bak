@@ -1,0 +1,20 @@
+#linux 网卡网络设置
+
+# 1. 修改计算机名字
+vi /etc/sysconfig/network
+-----------------
+NETWORKING=yes
+HOSTNAME=prince(prince为计算机名)
+-----------------
+
+# 2、修改 /etc/hosts
+vi /etc/hosts
+----------------------
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+127.0.0.1               localhost.localdomain localhost
+192.168.1.120   prince prince (prince为计算机名称)
+----------------------
+
+3、重启电脑
+init 6

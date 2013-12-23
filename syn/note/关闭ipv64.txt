@@ -1,0 +1,17 @@
+// 关闭ipv6
+
+Centos6 关闭IPV6
+
+输入 ip -6 addr show 和 lsmod | grep ipv6查询一下有无安装IPV6模块，或用netstat -nuptl查看是否有ipv6的地址，如果有显示，则说明未禁用IPV6协议，请按以下步骤操作：
+
+# vi /etc/modprobe.d/dist.conf  //文件增加如下内容：
+alias net-pf-10 off
+options ipv6 disable=1
+
+# vi /etc/sysconfig/network  //增加内容：
+NETWORKING_IPV6=no 或 IPV6INIT=no
+
+关闭ip6tables
+# chkconfig ip6tables off 
+# chkconfig ip6tables off
+# reboot
