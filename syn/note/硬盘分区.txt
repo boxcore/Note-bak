@@ -1,23 +1,25 @@
 分区配置：
 
-# fdisk -l
-# fdisk /dev/sdb
-> n
-> p
-> 1
->
->
-> w
-# mkfs -t ext4 /dev/sdb1
-# mkdir /home
-# mount /dev/sdb1 /home
+    # fdisk -l
+	# fdisk /dev/sdb
+	> n
+	> p
+	> 1
+	>
+	>
+	> w
+	# mkfs -t ext4 /dev/sdb1
+	# mkdir /home
+	# mount /dev/sdb1 /home
+	
+	# df -hal
+	# vi /etc/fstab
+	> /dev/sdb1 /home ext4 defaults 1 2
 
-# df -hal
-# vi /etc/fstab
-> /dev/sdb1 /home ext4 defaults 1 2
 
-
-http://www.diyvm.com/help/52.html
-http://www.liusuping.com/ubuntu-linux/linux-fdisk-disk.html
-http://www.cnblogs.com/papam/archive/2009/08/31/1557585.html
-
+参考文档：
+~~~~
+[http://www.diyvm.com/help/52.html](http://www.diyvm.com/help/52.html)
+[http://www.liusuping.com/ubuntu-linux/linux-fdisk-disk.html](http://www.liusuping.com/ubuntu-linux/linux-fdisk-disk.html)
+[http://www.cnblogs.com/papam/archive/2009/08/31/1557585.html](http://www.cnblogs.com/papam/archive/2009/08/31/1557585.html)
+~~~~
