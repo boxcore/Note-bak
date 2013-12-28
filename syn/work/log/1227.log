@@ -1,0 +1,28 @@
+
+1. new.7808.cn 链接添加site_url处理：
+
+已修改 : /trunk/sites/7808/views/common/nav_top.tpl.php
+已修改 : /trunk/sites/7808/views/header.tpl.php
+已修改 : /trunk/sites/7808/views/item/detail.tpl.php
+已修改 : /trunk/sites/7808/views/message.tpl.php
+已修改 : /trunk/sites/7808/views/portal.tpl.php
+已修改 : /trunk/sites/7808/views/cat_text.tpl.php
+已修改 : /trunk/sites/7808/views/developing.tpl.php
+已修改 : /trunk/sites/7808/views/main.layout.tpl.php
+
+已修改 : /trunk/sites/7808/funcs/app.fn.php
+
+
+2. fn28修改图片的调用
+
+已修改 : /trunk/sites/fn28/static/style/style.css
+已修改 : /trunk/sites/fn28/views/cat.tpl.php
+已修改 : /trunk/sites/fn28/views/search.tpl.php
+
+已修改 : /trunk/sites/fn28/conf/app.conf.php
+
+
+
+
+
+
