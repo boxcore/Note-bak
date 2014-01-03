@@ -1,0 +1,1 @@
+D:\AppServ\Apache2.2\bin\httpd.exe -k restart -n Apache2.2
