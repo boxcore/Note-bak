@@ -1,0 +1,8 @@
+执行脚本出现bin/bash: bad interpreter: No such file or directory
+
+
+错误原因之一很有可能是你的脚本文件是DOS格式的, 即每一行的行尾以/r/n来标识, 其ASCII码分别是0x0D, 0x0A.
+
+
+安装 unix2dos： yum install unix2dos
+然后执行 unix2dos 文件名  即可
