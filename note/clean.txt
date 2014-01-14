@@ -1,15 +1,15 @@
 #!/bin/bash
-#yum remove Deployment_Guide-en-US finger cups-libs cups bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools ypbind
+#yum -y remove Deployment_Guide-en-US finger cups-libs cups bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools ypbind
 
-yum remove Deployment_Guide-en-US finger cups-libs cups ypbind
-yum remove bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils
-yum remove sendmail* samba* talk-server finger-server bind* xinetd
-yum remove nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools
-yum remove syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools
-yum groupremove "Mail Server" "Games and Entertainment" "X Window System" "X Software Development" 
-yum groupremove "Development Libraries" "Dialup Networking Support" 
-yum groupremove "Games and Entertainment" "Sound and Video" "Graphics" "Editors" 
-yum groupremove "Text-based Internet" "GNOME Desktop Environment" "GNOME Software Development"
+yum -y remove Deployment_Guide-en-US finger cups-libs cups ypbind
+yum -y remove bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils
+yum -ym remove sendmail* samba* talk-server finger-server bind* xinetd
+yum -y remove nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools
+yum -y remove syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools
+yum -y groupremove "Mail Server" "Games and Entertainment" "X Window System" "X Software Development" 
+yum -y groupremove "Development Libraries" "Dialup Networking Support" 
+yum -y groupremove "Games and Entertainment" "Sound and Video" "Graphics" "Editors" 
+yum -y groupremove "Text-based Internet" "GNOME Desktop Environment" "GNOME Software Development"
 
 yum update
 yum clean all

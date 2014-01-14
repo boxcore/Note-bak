@@ -1,54 +1,79 @@
-ci数据库操作笔记：
+## ci数据库操作笔记： ##
 
 
 ------------------------------------------------
 我的常用函数
-/*  链式方法 */
-$this->db->select('title')->from('mytable')->where('id', $id)->limit(10, 20);
-$query = $this->db->get();
+
+    /*  链式方法 */
+    $this->db->select('title')->from('mytable')->where('id', $id)->limit(10, 20);
+    $query = $this->db->get();
 
 ------------------------------------------------
 
-一、数据库配置
+### 一、数据库配置 
 数据库配置文件： app/config/database.php
 
-二、加载数据库
+### 二、加载数据库
 $this->load->database(); //数据库配置载入并初始化数据库类
 
 
-三、数据库查询
-
-// 多结果标准查询
-$query = $this->db->query('SELECT name, title, email FROM my_table');
-$query->result()；  	//（对象形式）
-$query->result_array() 	// （数组形式）
-$query->num_rows() 		// 查询的总结果集
-
-// 单结果标准查询
-$query = $this->db->query('SELECT name FROM my_table LIMIT 1');
-$row = $query->row();echo $row->name; 			//（对象形式）
-$row = $query->row_array();echo $row['name'];	//（数组形式）
-
-//快捷查询   快捷查询类能为我们提供快速取得数据的途径:
-$query = $this->db->get('table_name');
-$row  = $query->result() ;
+### 三、数据库查询
 
 
-四、数据库插入
-// 标准插入(insert)
+3.1. 多结果标准查询
+
+    $query = $this->db->query('SELECT name, title, email FROM my_table');
+    /*（对象形式）*/
+    $query->result()；
+    /*（数组形式） */
+    $query->result_array();
+    /* 查询的总结果集 */
+    $query->num_rows();
+
+3.2. 单结果标准查询
+    
+    $query = $this->db->query('SELECT name FROM my_table LIMIT 1');
+
+3.2.1 对象形式
+
+    $row = $query->row();
+	echo $row->name;
+
+3.2.2 数组形式
+
+    $row = $query->row_array();
+	echo $row['name'];
+
+
+3. 快捷查询  
+
+快捷查询类能为我们提供快速取得数据的途径:
+    
+    $query = $this->db->get('table_name');
+    $row  = $query->result() ;
+
+
+
+### 四、数据库插入
+
+4.1 标准插入(insert)
+
 $sql = "INSERT INTO mytable (title, name) 
         VALUES (".$this->db->escape($title).",".$this->db->escape($name).")";
 $this->db->query($sql);
 echo $this->db->affected_rows();
 
-// 快捷插入(insert)
+
+4.2 快捷插入(insert)
+
 $data = array('title' => $title,'name' => $name,);
 $this->db->insert('mytable', $data); 
 // Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')
 
 
-五、数据库更新
-// 获得sql语句 打印 sql语句
+### 五、数据库更新
+
+5.1 获得sql语句 打印 sql语句
 $data = array('name' => $name, 'email' => $email,);
 $where = "author_id = 1 AND status = 'active'"; 
 $str = $this->db->update_string('table_name', $data, $where);
@@ -66,7 +91,7 @@ $this->db->update('mytable', $data, array('id' => $id));
 // 
 
 
-六、删除数据
+### 六、删除数据
 
 //生成并执行一条DELETE(删除)语句。
 $this->db->delete('mytable', array('id' => $id)); 
@@ -125,5 +150,5 @@ $str = $this->db->update_string('table_name', $data, $where);
 
 
 
-附：参考文档
+#### 附：参考文档
 http://codeigniter.org.cn/user_guide/database/active_record.html#chaining
