@@ -1,5 +1,5 @@
 #!/bin/bash
-yum -y install make apr* autoconf automake curl-devel gcc gcc-c++ zlib-devel openssl openssl-devel pcre-devel gd kernel keyutils patch perl kernel-headers compat* mpfr cpp glibc libgomp libstdc++-devel ppl cloog-ppl keyutils-libs-devel libcom_err-devel libsepol-devel libselinux-devel krb5-devel zlib-devel libXpm* freetype libjpeg* libpng* php-common php-gd ncurses* libtool* libxml2 libxml2-devel patch
+yum -y install apr* autoconf automake bison compat* cpp curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc krb5-devel kernel keyutils kernel-headers keyutils-libs-devel libtool* libxml2 libxml2-devel libgomp libpng* libjpeg* libXpm*  libstdc++-devel libcom_err-devel libsepol-devel libselinux-devel mpfr make ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
 
 #安装 pcre
 cd /root/src
