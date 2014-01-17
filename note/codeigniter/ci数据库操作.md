@@ -52,7 +52,7 @@ $this->load->database(); //数据库配置载入并初始化数据库类
     $query = $this->db->get('table_name');
     $row  = $query->result() ;
 
-
+注意：$query->result() 这样的对象查询必须要有"()"否则查询不出东西。
 
 ### 四、数据库插入
 

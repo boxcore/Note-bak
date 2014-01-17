@@ -3,7 +3,7 @@
 
 yum -y remove Deployment_Guide-en-US finger cups-libs cups ypbind
 yum -y remove bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils
-yum -ym remove sendmail* samba* talk-server finger-server bind* xinetd
+yum -y remove sendmail* samba* talk-server finger-server bind* xinetd
 yum -y remove nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools
 yum -y remove syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools
 yum -y groupremove "Mail Server" "Games and Entertainment" "X Window System" "X Software Development" 

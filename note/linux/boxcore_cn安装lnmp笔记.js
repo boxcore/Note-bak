@@ -17,7 +17,7 @@ unzip
 zlib-devel
 
 // 组装好是这样的：
-$ yum -y install apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc jpegsrc krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
+$ yum install -y  apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc jpegsrc krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
 
 $ yum clean all
 
@@ -30,7 +30,7 @@ $ wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
 $ cd /root/src
 $ tar -zxvf pcre-8.34.tar.gz
 $ cd pcre-8.34/
-$ mkdir /usr/local/pcre
+$ mkdir -pv /usr/local/pcre
 $ ./configure --prefix=/usr/local/pcre && make && make install
 
 
@@ -44,6 +44,7 @@ $ ./configure --prefix=/usr/local/pcre && make && make install
 
 
 **/
+wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35.tar.gz
 $ mkdir -pv /var/mysql/data //创建MySQL数据库存放目录
 $ groupadd -r mysql //添加mysql组
 //$ useradd -M -s /sbin/nologin mysql
@@ -64,15 +65,21 @@ $ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/var/mysql/dat
 **/
 
 $ make && make install
-cp support-files/my-medium.cnf /etc/my.cnf
-chmod 755 scripts/mysql_install_db
+cp -rf /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
+chmod 755 /usr/local/mysql/scripts/mysql_install_db
 #初始化数据库
-scripts/mysql_install_db  --user=mysql  --basedir=/usr/local/mysql --datadir=/data/mysql/
+/usr/local/mysql/scripts/mysql_install_db  --user=mysql  --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
 #设置开机启动mysql
-cp support-files/mysql.server /etc/init.d/mysql
-chmod 755 /etc/init.d/mysql
-chkconfig mysql on
+cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+chmod 755 /etc/init.d/mysqld
+chkconfig mysqld on
 echo 'export PATH=/usr/local/mysql/bin:$PATH' >> /etc/profile
+
+  vim /etc/my.cnf
+      
+    #[mysqld] 添加：
+    datadir=/data/mysql
+    default-storage-engine=MyISAM
 
 #初始化mysql密码
 /usr/local/mysql/bin/mysqladmin -u root password 'abc654321'
@@ -236,12 +243,20 @@ wget http://mirrors.sohu.com/php/php-5.3.28.tar.gz
 tar -zxf php-5.3.28.tar.gz
 cd /root/src/php-5.3.28
 ./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=/usr/local/mysql --with-mysql-sock --with-pdo-mysql --with-zlib --with-libxml-dir --with-curl --with-xmlrpc --with-openssl --with-mhash --with-mcrypt --with-pear --enable-mbstring --enable-sysvshm --enable-zip  --enable-soap --enable-sockets 
- make
- make install
+
+make
+make install
 
 --------------------------------------------
 安装php时遇到的错误：
 --------------------------------------------
+
+configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+make: *** No targets specified and no makefile found.  Stop.
+make: *** No rule to make target `install'.  Stop.
+
+
+
 [PEAR] Archive_Tar    - installed: 1.3.11
 [PEAR] Console_Getopt - installed: 1.3.1
 warning: pear/PEAR requires package "pear/Structures_Graph" (recommended version 1.0.4)
@@ -257,5 +272,35 @@ Installing PDO headers:          /usr/local/php/include/php/ext/pdo/
 --------------------------------------------
 yum -y install pear*
 
+./configure --prefix=/opt/php \
+--with-config-file-path=/opt/php/etc \
+--enable-fpm --with-fpm-user=nginx \
+--with-fpm-group=nginx \
+--with-zlib \
+--with-libxml-dir \
+--with-curl \
+--with-xmlrpc \
+--with-openssl \
+--with-mhash \
+--with-mcrypt \
+--with-pear \
+--enable-mbstring \
+--enable-sysvshm \
+--enable-zip \
+--with-mysql \
+--with-mysql-sock \
+--with-pdo-mysql
 
+
+wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
+tar -zxf libmcrypt-2.5.7.tar.gz
+cd libmcrypt-2.5.7/
+mkdir -p /usr/local/libmcrytp
+./configure prefix=/usr/local/libmcrytp
+make
+make install
+
+
+安装php 5.5
+rm -rf /usr/local/php*
 

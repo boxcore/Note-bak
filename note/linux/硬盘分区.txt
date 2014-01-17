@@ -1,20 +1,20 @@
 分区配置：
 
     # fdisk -l
-	# fdisk /dev/sdb
+	# fdisk /dev/vdb
 	> n
 	> p
 	> 1
 	>
 	>
 	> w
-	# mkfs -t ext4 /dev/sdb1
+	# mkfs -t ext4 /dev/vdb1
 	# mkdir /home
-	# mount /dev/sdb1 /home
+	# mount /dev/vdb1 /home
 	
 	# df -hal
 	# vi /etc/fstab
-	> /dev/sdb1 /home ext4 defaults 1 2
+	> /dev/vdb1 /home ext4 defaults 1 2
 
 
 参考文档：
