@@ -1,4 +1,15 @@
-//°²×°×î»ù´¡Ö§³Å yumÏÂÃæËùÓĞ»ù´¡¼ş£¬Ê¹ÓÃÊ±Ã»ÓĞ»Ø³µ£¬Çë»»¿Õ¸ñ
+
+/**
+è¯´æ˜ï¼šé›†æˆå®‰è£…å‚è€ƒ
+Linux(6.4)+Nginx(1.4.1)+Mysql(5.6.12)+Php(5.5.0)æºç ç¼–è¯‘ ï¼š http://asange.blog.51cto.com/7125040/1229976 
+
+**/
+
+
+++++++++++++++++++++++++
+ä¸€ã€å®‰è£…åŸºç¡€æ”¯æŒ
+++++++++++++++++++++++++
+//å®‰è£…æœ€åŸºç¡€æ”¯æ’‘ yumä¸‹é¢æ‰€æœ‰åŸºç¡€ä»¶ï¼Œä½¿ç”¨æ—¶æ²¡æœ‰å›è½¦ï¼Œè¯·æ¢ç©ºæ ¼
 yum -y install  
 apr* autoconf automake 
 bison  bzip2
@@ -16,129 +27,124 @@ patch pcre-devel  perl php-gd php-common ppl
 unzip
 zlib-devel
 
-// ×é×°ºÃÊÇÕâÑùµÄ£º
-$ yum install -y  apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc jpegsrc krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
-
-$ yum clean all
-
-
---------------------------------------------------------------
-// °²×° pcre 
---------------------------------------------------------------
-// Ö§³ÖÖØĞ´rewrite,nginx rewriteÒÀÀµÓÚPCRE¿â£¬ËùÒÔĞèÒªÔÚlinuxÏµÍ³ÖĞ±àÒë°²×°PCRE¿â µ½ ¿´ ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/ ×îĞÂµÄpcreÎÒÊ¹ÓÃµÄÊÇÏÂÃæ×îĞÂµÄ£º
-$ wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
-$ cd /root/src
-$ tar -zxvf pcre-8.34.tar.gz
-$ cd pcre-8.34/
-$ mkdir -pv /usr/local/pcre
-$ ./configure --prefix=/usr/local/pcre && make && make install
+// ç»„è£…å¥½æ˜¯è¿™æ ·çš„ï¼š
+# yum install -y  apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc jpegsrc krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
+// è¯´æ˜ï¼Œyumå®‰è£…libmcrypt libmcrypt-devel è¿™ä¸¤ä¸ªåŒ…åå®‰è£…phpæ—¶ä¼šæ‰¾ä¸åˆ°ç›®å½•ï¼Œã€å¾…è§£å†³ã€‘
+# yum clean all
 
 
--------------------
-#°²×°mysql
--------------------
+
+
+
++++++++++++++++++++++++++++++++++++
+äºŒã€å®‰è£…mysql
++++++++++++++++++++++++++++++++++++
 /**
-°²×°Ç°ËµÃ÷£º
-ÔÚcentos 5ÖĞ°²×°  mysql-5.5.35 »áÓĞ ssl_doµÈ±¨´í£¬µ«ÔÚcentos 6ÖĞÃ»ÓĞÕâÖÖÎÊÌâ¡£
-¼ÙÈçÊ¹ÓÃcentos°²×°ÔòÍÆ¼ö ¸üµÍ°æ±¾
-
-
+å®‰è£…å‰è¯´æ˜ï¼š
+åœ¨centos 5ä¸­å®‰è£…  mysql-5.5.35 ä¼šæœ‰ ssl_doç­‰æŠ¥é”™ï¼Œä½†åœ¨centos 6ä¸­æ²¡æœ‰è¿™ç§é—®é¢˜ã€‚
+å‡å¦‚ä½¿ç”¨centoså®‰è£…åˆ™æ¨è æ›´ä½ç‰ˆæœ¬
 **/
-wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35.tar.gz
-$ mkdir -pv /var/mysql/data //´´½¨MySQLÊı¾İ¿â´æ·ÅÄ¿Â¼
-$ groupadd -r mysql //Ìí¼Ómysql×é
+# wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35.tar.gz
+# mkdir -pv /var/mysql/data //åˆ›å»ºMySQLæ•°æ®åº“å­˜æ”¾ç›®å½•
+
 //$ useradd -M -s /sbin/nologin mysql
-$ useradd -g mysql -r -s /bin/false -M -d /var/mysql/data mysql //#´´½¨ÓÃ»§mysql²¢¼ÓÈëµ½mysql×é£¬²»ÔÊĞímysqlÓÃ»§Ö±½ÓµÇÂ¼ÏµÍ³
-$ chown mysql:mysql /var/mysql/data //ÉèÖÃMySQLÊı¾İ¿âÄ¿Â¼È¨ÏŞ
-$ mkdir -p /usr/local/mysql // ´´½¨MySQL°²×°Ä¿Â¼
-$ tar -zxvf /root/src/mysql-5.5.35.tar.gz
-$ cd /root/src/mysql-5.5.35
-$ cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/var/mysql/data -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DENABLED_LOCAL_INFILE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DEXTRA_CHARSETS=utf8 -DMYSQL_TCP_PORT=3306 -DMYSQL_USER=mysql -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DWITH_SSL=yes -DWITH_PARTITION_STORAGE_ENGINE=1 -DINSTALL_PLUGINDIR=/usr/local/mysql/plugin -DWITH_DEBUG=0 
+# groupadd -r mysql //æ·»åŠ mysqlç»„
+# useradd -g mysql -r -s /bin/false -M -d /var/mysql/data mysql //#åˆ›å»ºç”¨æˆ·mysqlå¹¶åŠ å…¥åˆ°mysqlç»„ï¼Œä¸å…è®¸mysqlç”¨æˆ·ç›´æ¥ç™»å½•ç³»ç»Ÿ
+//-d /var/mysql/data æ˜¯æŒ‡æ•°æ®åº“æ–‡ä»¶åœ°å€ï¼ŒæŒ‰éœ€ä¿®æ”¹
+
+# chown mysql:mysql /var/mysql/data //è®¾ç½®MySQLæ•°æ®åº“ç›®å½•æƒé™
+//# mkdir -pv /usr/local/mysql // åˆ›å»ºMySQLå®‰è£…ç›®å½•
+# tar -zxf /root/src/mysql-5.5.35.tar.gz
+# cd /root/src/mysql-5.5.35
+# cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/var/mysql/data -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DENABLED_LOCAL_INFILE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DEXTRA_CHARSETS=utf8 -DMYSQL_TCP_PORT=3306 -DMYSQL_USER=mysql -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DWITH_SSL=yes -DWITH_PARTITION_STORAGE_ENGINE=1 -DINSTALL_PLUGINDIR=/usr/local/mysql/plugin -DWITH_DEBUG=0 
 /**
-²ÎÊıËµÃ÷£º
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql        //°²×°Ä¿Â¼
--DINSTALL_DATADIR=/usr/local/mysql/data         //Êı¾İ¿â´æ·ÅÄ¿Â¼
--DDEFAULT_CHARSET=utf8                    ¡¡¡¡¡¡¡¡//Ê¹ÓÃutf8×Ö·û
--DDEFAULT_COLLATION=utf8_general_ci            //Ğ£Ñé×Ö·û
--DEXTRA_CHARSETS=all                        ¡¡¡¡¡¡¡¡//°²×°ËùÓĞÀ©Õ¹×Ö·û¼¯
--DENABLED_LOCAL_INFILE=1                    ¡¡¡¡  //ÔÊĞí´Ó±¾µØµ¼ÈëÊı¾İ
+å‚æ•°è¯´æ˜ï¼š
+-DCMAKE_INSTALL_PREFIX=/usr/local/mysql \   #å®‰è£…è·¯å¾„
+-DMYSQL_DATADIR=/usr/local/mysql/data       \    #æ•°æ®æ–‡ä»¶å­˜æ”¾ä½ç½®
+-DSYSCONFDIR=/etc \ 		#my.cnfè·¯å¾„
+-DWITH_MYISAM_STORAGE_ENGINE=1    \       #æ”¯æŒMyIASMå¼•æ“
+-DWITH_INNOBASE_STORAGE_ENGINE=1 \     #æ”¯æŒInnoDBå¼•æ“
+-DWITH_MEMORY_STORAGE_ENGINE=1 \        #æ”¯æŒMemoryå¼•æ“
+-DWITH_READLINE=1     \          #å¿«æ·é”®åŠŸèƒ½(æˆ‘æ²¡ç”¨è¿‡)
+-DMYSQL_UNIX_ADDR=/tmp/mysqld.sock      \   #è¿æ¥æ•°æ®åº“socketè·¯å¾„
+-DMYSQL_TCP_PORT=3306                  \               #ç«¯å£
+-DENABLED_LOCAL_INFILE=1    \       #å…è®¸ä»æœ¬åœ°å¯¼å…¥æ•°æ®
+-DWITH_PARTITION_STORAGE_ENGINE=1  \   #å®‰è£…æ”¯æŒæ•°æ®åº“åˆ†åŒº
+-DEXTRA_CHARSETS=all  \             #å®‰è£…æ‰€æœ‰çš„å­—ç¬¦é›†
+-DDEFAULT_CHARSET=utf8  \           #é»˜è®¤å­—ç¬¦
+-DDEFAULT_COLLATION=utf8_general_ci #æ ¡éªŒå­—ç¬¦
+-DENABLED_LOCAL_INFILE=1            #å…è®¸ä»æœ¬åœ°å¯¼å…¥æ•°æ®
 **/
 
-$ make && make install
-cp -rf /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
-chmod 755 /usr/local/mysql/scripts/mysql_install_db
-#³õÊ¼»¯Êı¾İ¿â
-/usr/local/mysql/scripts/mysql_install_db  --user=mysql  --basedir=/usr/local/mysql --datadir=/usr/local/mysql/data
-#ÉèÖÃ¿ª»úÆô¶¯mysql
-cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
-chmod 755 /etc/init.d/mysqld
-chkconfig mysqld on
-echo 'export PATH=/usr/local/mysql/bin:$PATH' >> /etc/profile
+# make && make install
 
-  vim /etc/my.cnf
-      
-    #[mysqld] Ìí¼Ó£º
-    datadir=/data/mysql
-    default-storage-engine=MyISAM
+# cp -rf /usr/local/mysql/support-files/my-medium.cnf /etc/my.cnf
+# chmod 755 /usr/local/mysql/scripts/mysql_install_db
 
-#³õÊ¼»¯mysqlÃÜÂë
-/usr/local/mysql/bin/mysqladmin -u root password 'abc654321'
-ps -aux |grep mysql
-/etc/init.d/mysql start
+//åˆå§‹åŒ–æ•°æ®åº“
+# /usr/local/mysql/scripts/mysql_install_db  --user=mysql  --basedir=/usr/local/mysql --datadir=/var/mysql/data
+//è®¾ç½®å¼€æœºå¯åŠ¨mysql
+# cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+# chmod 755 /etc/init.d/mysqld
+# chkconfig mysqld on
+# echo 'export PATH=/usr/local/mysql/bin:$PATH' >> /etc/profile
 
-#²Î¿¼ £ºhttp://caiyufei.blog.51cto.com/1521312/1172378     ºÍ http://www.sunchis.com/html/db/mysql/2013/0427/448.html
+// ç¼–è¾‘é…ç½®æ–‡ä»¶
+# vim /etc/my.cnf
+//[mysqld] æ·»åŠ ï¼š
+=============================
+datadir=/data/mysql
+default-storage-engine=InnoDB
+=============================
+
+// åˆå§‹åŒ–mysqlå¯†ç 
+# service mysqld restart
+# /usr/local/mysql/bin/mysqladmin -u root password 'abc654321'
+# ps -aux |grep mysql
+# /etc/init.d/mysqld start
+
+// å‚è€ƒ ï¼šhttp://caiyufei.blog.51cto.com/1521312/1172378     å’Œ http://www.sunchis.com/html/db/mysql/2013/0427/448.html
 
 
 -----------------------------------------------------------
-¸¨Öú£º°²×°mysql  5.6
-²Î¿¼£ºhttp://blog.csdn.net/zqtsx/article/details/9378703
+è¾…åŠ©ï¼šå®‰è£…mysql  5.6
+å‚è€ƒï¼šhttp://blog.csdn.net/zqtsx/article/details/9378703
+5.5å‚è€ƒï¼šhttp://fsckyl.blog.51cto.com/3227419/1275060
 -----------------------------------------------------------
-useradd mysql -s /sbin/nologin -M
-cd ..
-tar zxf mysql-5.6.15.tar.gz
-cd mysql-5.6.15
-
-cmake \
--DCMAKE_INSTALL_PREFIX=/usr/local/mysql \   #°²×°Â·¾¶
--DMYSQL_DATADIR=/usr/local/mysql/data       \    #Êı¾İÎÄ¼ş´æ·ÅÎ»ÖÃ
--DSYSCONFDIR=/etc              \                                  #my.cnfÂ·¾¶
--DWITH_MYISAM_STORAGE_ENGINE=1    \       #Ö§³ÖMyIASMÒıÇæ
--DWITH_INNOBASE_STORAGE_ENGINE=1 \     #Ö§³ÖInnoDBÒıÇæ
--DWITH_MEMORY_STORAGE_ENGINE=1 \        #Ö§³ÖMemoryÒıÇæ
--DWITH_READLINE=1                    \                         #¿ì½İ¼ü¹¦ÄÜ(ÎÒÃ»ÓÃ¹ı)
--DMYSQL_UNIX_ADDR=/tmp/mysqld.sock      \   #Á¬½ÓÊı¾İ¿âsocketÂ·¾¶
--DMYSQL_TCP_PORT=3306                  \               #¶Ë¿Ú
--DENABLED_LOCAL_INFILE=1            \                #ÔÊĞí´Ó±¾µØµ¼ÈëÊı¾İ
--DWITH_PARTITION_STORAGE_ENGINE=1  \   #°²×°Ö§³ÖÊı¾İ¿â·ÖÇø
--DEXTRA_CHARSETS=all                  \                   #°²×°ËùÓĞµÄ×Ö·û¼¯
--DDEFAULT_CHARSET=utf8              \                   #Ä¬ÈÏ×Ö·û
--DDEFAULT_COLLATION=utf8_general_ci
-
-×éºÏ³É£º
-$ cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_MEMORY_STORAGE_ENGINE=1 -DWITH_READLINE=1 -DMYSQL_UNIX_ADDR=/tmp/mysqld.sock -DMYSQL_TCP_PORT=3306                  -DENABLED_LOCAL_INFILE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DEXTRA_CHARSETS=all -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci
-$ make  
-$ make install
-
-mysqlÆäËû°²×°²Î¿¼£º
-	5.5²Î¿¼£ºhttp://fsckyl.blog.51cto.com/3227419/1275060
-mysql Óöµ½µÄÆäËûÎÊÌâ£º
+	
+mysql é‡åˆ°çš„å…¶ä»–é—®é¢˜ï¼š
 Starting MySQL. ERROR! The server quit without updating PID file
-Õâ¸öÊ±ºòÒ»¶¨ÒªºÃºÃ¼ì²â±àÒëÊ±ºòµÄ°²×°Ä¿Â¼ºÍÊ¹ÓÃµÄÊı¾İ¿âµØÖ·ÊÇ·ñÕıÈ·£»
-È»ºóÔÚ¸´ÖÆmysqlÄ¿Â¼ÏÂµÄmy.cnf µ½ /etc/my.cnf ²¢ÉèÖÃÏà¹ØµÄÊôĞÔ¡£
+è¿™ä¸ªæ—¶å€™ä¸€å®šè¦å¥½å¥½æ£€æµ‹ç¼–è¯‘æ—¶å€™çš„å®‰è£…ç›®å½•å’Œä½¿ç”¨çš„æ•°æ®åº“åœ°å€æ˜¯å¦æ­£ç¡®ï¼›
+ç„¶ååœ¨å¤åˆ¶mysqlç›®å½•ä¸‹çš„my.cnf åˆ° /etc/my.cnf å¹¶è®¾ç½®ç›¸å…³çš„å±æ€§ã€‚
 ============================================================
 
 
+++++++++++++++++++++++++++
+ä¸‰ã€å®‰è£…Nginx
+++++++++++++++++++++++++++
 
-#°²×°Nginx
+/**	
+ * 3.1 å®‰è£…nginxä¾èµ–åŒ…
+ */
+// install pcre æ”¯æŒä¸ºé™æ€
+# wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.34.tar.gz
+# tar -zxvf pcre-8.34.tar.gz
+# cd pcre-8.34/
+# mkdir -pv /usr/local/pcre
+# ./configure --prefix=/usr/local/pcre && make && make install
+
+/**	
+ * 3.2 å®‰è£…nginx
+ */
 $ cd /root/src
-$ wget http://nginx.org/download/nginx-1.4.4.tar.gz // 1.4.4ÊÇ×îĞÂµÄÎÈ¶¨°æ ¿ª·¢°æ¿ÉÒÔÊ¹ÓÃ£ºhttp://nginx.org/download/nginx-1.5.8.tar.gz  
+$ wget http://nginx.org/download/nginx-1.4.4.tar.gz // 1.4.4æ˜¯æœ€æ–°çš„ç¨³å®šç‰ˆ å¼€å‘ç‰ˆå¯ä»¥ä½¿ç”¨ï¼šhttp://nginx.org/download/nginx-1.5.8.tar.gz  
 $ groupadd www
 $ useradd -g www www -s /bin/false
 $ tar -zxvf nginx-1.4.4.tar.gz
 $ cd nginx-1.4.4/
-$ ./configure --prefix=/usr/local/nginx --without-http_memcached_module --user=www --group=www --with-http_stub_status_module --with-openssl=/usr/ --with-pcre=/root/src/pcre-8.34 //×¢ÒâpcreÊ¹ÓÃµÄÊÇÔ´Âë°üµÄµØÖ·
+$ ./configure --prefix=/usr/local/nginx --without-http_memcached_module --user=www --group=www --with-http_stub_status_module --with-openssl=/usr/ --with-pcre=/root/src/pcre-8.34 //æ³¨æ„pcreä½¿ç”¨çš„æ˜¯æºç åŒ…çš„åœ°å€
 $ make && make install
-$ /usr/local/nginx/sbin/nginx //Æô¶¯nginx·şÎñ
+$ /usr/local/nginx/sbin/nginx //å¯åŠ¨nginxæœåŠ¡
 $ rm -rf /etc/rc.d/init.d/nginx
 $ vi /etc/rc.d/init.d/nginx
 -------------------------------------------------------------------------
@@ -152,7 +158,7 @@ file: /etc/rc.d/init.d/nginx start
 # chkconfig: - 85 15
 # description: 	Nginx is a high-performance web and proxy server.\
 #				proxy and IMAP/POP3 proxy server
-# It has a lot of features, but it's not for everyone.
+# It has a lot of features, but it's not for everyone.'
 #
 # processname: nginx
 # pidfile: /var/run/nginx.pid
@@ -227,6 +233,8 @@ exit $RETVAL
 -------------------------------------------------------------------------
 file: /etc/rc.d/init.d/nginx end
 -------------------------------------------------------------------------
+
+
 $ chmod 775 /etc/rc.d/init.d/nginx
 $ chkconfig nginx on
 $ /etc/rc.d/init.d/nginx restart
@@ -235,43 +243,42 @@ $ service nginx restart
 
 
 
-------------------
-°²×°php
---------------------
++++++++++++++++++++++++++
+å››ã€å®‰è£…php
++++++++++++++++++++++++++
+
+/**
+ * 4.1 å®‰è£…phpä¾èµ–åº“
+ */
+// å®‰è£… libmcrypt
+# cd /root/src/
+# wget http://sourceforge.net/projects/mcrypt/files/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz/download
+# tar -zxf libmcrypt-2.5.8.tar.gz
+# cd libmcrypt-2.5.8/
+# mkdir -pv /usr/local/libmcrytp
+# ./configure prefix=/usr/local/libmcrytp
+# make
+# make install
+
+
+/**
+ * 4.2 å®‰è£…php
+ */
 cd /root/src
 wget http://mirrors.sohu.com/php/php-5.3.28.tar.gz
 tar -zxf php-5.3.28.tar.gz
+rm -rf /usr/local/php*
 cd /root/src/php-5.3.28
-./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=/usr/local/mysql --with-mysql-sock --with-pdo-mysql --with-zlib --with-libxml-dir --with-curl --with-xmlrpc --with-openssl --with-mhash --with-mcrypt --with-pear --enable-mbstring --enable-sysvshm --enable-zip  --enable-soap --enable-sockets 
-
+./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=/usr/local/mysql --with-mysql-sock --with-pdo-mysql=/usr/local/mysql/bin/mysql --with-zlib --with-libxml-dir --with-curl --with-xmlrpc --with-openssl --with-mhash --with-mcrypt=/usr/local/libmcrytp --with-pear --enable-mbstring --enable-sysvshm --enable-zip  --enable-soap --enable-sockets 
+/**
+æ³¨æ„é…ç½®ï¼š
+--with-mcrypt=/usr/local/libmcrytp
+--with-pdo-mysql=/usr/local/mysql/bin/mysql  // é€šè¿‡ whois mysqlæŸ¥
+**/
 make
 make install
-
---------------------------------------------
-°²×°phpÊ±Óöµ½µÄ´íÎó£º
---------------------------------------------
-
-configure: error: mcrypt.h not found. Please reinstall libmcrypt.
-make: *** No targets specified and no makefile found.  Stop.
-make: *** No rule to make target `install'.  Stop.
-
-
-
-[PEAR] Archive_Tar    - installed: 1.3.11
-[PEAR] Console_Getopt - installed: 1.3.1
-warning: pear/PEAR requires package "pear/Structures_Graph" (recommended version 1.0.4)
-warning: pear/PEAR requires package "pear/XML_Util" (recommended version 1.2.1)
-[PEAR] PEAR           - installed: 1.9.4
-Wrote PEAR system config file at: /usr/local/php/etc/pear.conf
-You may want to add: /usr/local/php/lib/php to your php.ini include_path
-[PEAR] Structures_Graph- installed: 1.0.4
-[PEAR] XML_Util       - installed: 1.2.1
-/root/src/php-5.3.28/build/shtool install -c ext/phar/phar.phar /usr/local/php/bin
-ln -s -f /usr/local/php/bin/phar.phar /usr/local/php/bin/phar
-Installing PDO headers:          /usr/local/php/include/php/ext/pdo/
---------------------------------------------
-yum -y install pear*
-
+/**
+phpå‚æ•°è¯´æ˜
 ./configure --prefix=/opt/php \
 --with-config-file-path=/opt/php/etc \
 --enable-fpm --with-fpm-user=nginx \
@@ -290,17 +297,80 @@ yum -y install pear*
 --with-mysql \
 --with-mysql-sock \
 --with-pdo-mysql
+**/
 
 
-wget ftp://mcrypt.hellug.gr/pub/crypto/mcrypt/libmcrypt/libmcrypt-2.5.7.tar.gz
-tar -zxf libmcrypt-2.5.7.tar.gz
-cd libmcrypt-2.5.7/
-mkdir -p /usr/local/libmcrytp
-./configure prefix=/usr/local/libmcrytp
-make
-make install
+--------------------------------------------
+å®‰è£…phpæ—¶é‡åˆ°çš„é”™è¯¯ï¼š
+--------------------------------------------
+
+configure: error: mcrypt.h not found. Please reinstall libmcrypt.
+make: *** No targets specified and no makefile found.  Stop.
+make: *** No rule to make target `install'.  Stop.
+
+// å½“çœ‹åˆ°ä¸‹é¢å†…å®¹è¯´æ˜phpå®‰è£…æˆåŠŸï¼Œ ä½†pearå¯èƒ½ä¸å·¥ä½œã€å¾…è§£å†³ã€‘
+--------------------------------------------
+[PEAR] Archive_Tar    - installed: 1.3.11
+[PEAR] Console_Getopt - installed: 1.3.1
+warning: pear/PEAR requires package "pear/Structures_Graph" (recommended version 1.0.4)
+warning: pear/PEAR requires package "pear/XML_Util" (recommended version 1.2.1)
+[PEAR] PEAR           - installed: 1.9.4
+Wrote PEAR system config file at: /usr/local/php/etc/pear.conf
+You may want to add: /usr/local/php/lib/php to your php.ini include_path
+[PEAR] Structures_Graph- installed: 1.0.4
+[PEAR] XML_Util       - installed: 1.2.1
+/root/src/php-5.3.28/build/shtool install -c ext/phar/phar.phar /usr/local/php/bin
+ln -s -f /usr/local/php/bin/phar.phar /usr/local/php/bin/phar
+Installing PDO headers:          /usr/local/php/include/php/ext/pdo/ '
+--------------------------------------------
+
+// phpé…ç½®æ–‡ä»¶
+cp php.ini-development /usr/local/php/etc/php.ini
+cp sapi/fpm/init.d.php-fpm  /etc/rc.d/init.d/php-fpm
+chmod +x /etc/init.d/php-fpm
+chkconfig --add php-fpm
+chkconfig php-fpm on
+
+cd /usr/local/php/etc/
+cp php-fpm.conf.default php-fpm.conf
+vi php-fpm.conf 
+//ä¸€èˆ¬é…ç½®çš„ä¾æ®å¦‚ä¸‹
+===============================================
+å†…å­˜å°äº4GæœåŠ¡å™¨ï¼ˆå€¼å¯é€çº§é€’å‡ï¼‰ï¼š
+ä¿®æ”¹å¦‚ä¸‹å‚æ•°ï¼š
+pm=dynamic
+pm.max_children=40
+pm.start_servers=10
+pm.min_spare_servers=10
+pm.max_spare_servers=40
+ ******************************
+å†…å­˜å¤§äº4GæœåŠ¡å™¨ï¼ˆå€¼å¯é€çº§é€’å¢ï¼‰ï¼š
+ä¿®æ”¹å¦‚ä¸‹å‚æ•°ï¼š
+pm=static
+pm.max_children=100
+===============================================
 
 
-°²×°php 5.5
-rm -rf /usr/local/php*
++++++++++++++++++++++++++
+äº”ã€nginxä¸­å¯ç”¨php
++++++++++++++++++++++++++
+vi /usr/local/nginx/conf/nginx.conf
 
+ä¿®æ”¹å†…å®¹å¦‚ï¼š
+=============================================================
+location / {
+            root   html;
+            index  index.html index.htm index.php;    //æ·»åŠ index.php
+        }
+//å¯ç”¨ä¸‹é¢çš„é…ç½®
+location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+=============================================================
+
+service php-fpm start
+service nginx restart

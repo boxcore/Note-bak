@@ -1,0 +1,54 @@
+
+// 下载基础文件
+wget http://subversion.tigris.org/downloads/subversion-1.6.6.tar.gz
+wget http://subversion.tigris.org/downloads/subversion-deps-1.6.6.tar.gz
+
+// 查看是否有rpm包安装
+rpm -qa | grep subversion
+
+// 查找ssl扩展
+find / -name opensslv.h
+// 找到位置在： /usr/include/openssl/opensslv.h 粘贴他的目录即可
+// 如果没有安装ssl支撑则yum安装下再查找：
+yum install openssl openssl-devel
+
+tar zxvf subversion-1.6.6.tar.gz
+tar zxvf subversion-deps-1.6.6.tar.gz
+
+cd subversion-1.6.6
+./configure --prefix=/usr/local/svn --with-openssl=/usr/include/openssl
+ --without-berkeley-db
+ /**
+ 说明：--without-berkeley-db  后面以svnserve方式运行，所以不加apache编译参数。以fsfs格式存储版本库，不编译berkeley-db
+ **/
+ 
+如果最后出现下面WARNING,我们直接忽略即可，因为不使用BDB存储。
+===============================================
+configure: WARNING: we have configured without BDB filesystem support
+You don't seem to have Berkeley DB version 4.0.14 or newer
+installed and linked to APR-UTIL. We have created Makefiles which
+will build without the Berkeley DB back-end; your repositories will
+use FSFS as the default back-end. You can find the latest version of
+Berkeley DB here:
+ 
+http://www.sleepycat.com/download/index.shtml
+===================================================
+
+make
+make install
+ 
+ 
+// 测试svn是否安装成功 
+/usr/local/svn/bin/svnserve --version
+
+为了方便下操作，把svn相关的命令添加到环境变量中:
+echo "export PATH=$PATH:/usr/local/svn/bin/" >> /etc/profile
+source /etc/profile
+
+
+# svn checkout http://www.svnchina.com/svn/xinwenda /home/www/xinwenda
+# svn update /home/www/xinwenda
+
+# vim /opt/svn/zoy/hooks/post-commit
+
+http://www.svnchina.com/svn/xinwenda

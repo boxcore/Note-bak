@@ -99,6 +99,10 @@ NM_CONTROLLED=yes
 BOOTPROTO=dhcp
 ========================================
 
+设置dns
+vim /etc/resolv.conf
+nameserver 8.8.4.4
+
 
 
 临时记录：
