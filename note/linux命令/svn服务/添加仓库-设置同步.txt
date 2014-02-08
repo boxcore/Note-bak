@@ -1,0 +1,47 @@
+
+mkdir -pv /opt/svn/wfy/
+/usr/local/svn/bin/svnadmin create /opt/svn/wfy/
+
+
+/*修改配置文件*/
+cd /opt/svn/wfy/conf/
+vim svnserve.conf
+
+-----------
+[general]
+anon-access = none
+auth-access = write
+password-db = passwd
+authz-db = authz
+-------------
+
+vim authz
+----------------
+[wfy:/]
+hcz = rw
+zsj = rw
+----------------
+
+# vim passwd
+-------------
+hcz = hcz_2014@
+zsj = zsj2014@
+--------------
+
+// 设置钩子
+mkdir -pv /home/www/wfy
+/usr/local/svn/bin/svn checkout svn://115.47.14.64/wfy  /home/www/wfy --username hcz --password hcz_2014@
+/usr/local/svn/bin/svn update /home/www/wfy --username hcz --password hcz_2014@
+chown -R www:www /home/www/wfy
+
+vim /opt/svn/wfy/hooks/post-commit
+------------
+#!/bin/sh
+SVN=/usr/local/svn/bin/svn
+WEB=/home/www/wfy
+$SVN update $WEB --username hcz --password hcz_2014@
+chown -R www:www $WEB
+-------------
+
+chmod 777 /opt/svn/wfy/hooks/post-commit
+/opt/svn/wfy/hooks/post-commit -t
