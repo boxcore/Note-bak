@@ -1,0 +1,8 @@
+#node js install for lnmp
+wget http://nodejs.org/dist/v0.10.24/node-v0.10.24.tar.gz
+cd /root/src
+tar -zxvf node-v0.10.24.tar.gz
+cd node-v0.10.24/
+./configure
+make
+make install

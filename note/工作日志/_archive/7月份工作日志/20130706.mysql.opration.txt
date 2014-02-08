@@ -1,0 +1,43 @@
+MySQL优化笔记：
+
+
+多个查询：
+
+数学函数：
+sum count length if 
+
+
+
+mysql事务处理：
+预处理：
+	预准备：start transetion
+	
+	删除预处理：
+	
+	commit:
+	rollback:
+	
+	mysql还原点在php中比较难把控。故不深究。
+	
+
+1.7 mysql存储
+	\d //    换命令结束符。
+	\d ;		命令结束符换回；
+	while循环。
+	
+	
+	例句：
+	create procedure cuser()
+	begin
+	set @i=1;
+	while @i<100 do
+	insert into t2(name) values(concat())...
+	
+1.8	触发器
+	
+	触发器的操作的表 必须要有关系
+	
+	
+	
+查询超过10秒会进入到慢查询日志中。看、
+show variables like "%slow%"; 慢查询日志

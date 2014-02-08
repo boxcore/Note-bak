@@ -1,0 +1,8 @@
+
+
+project:
+
+https://code.google.com/p/mail2miniblog/source/checkout
+
+read blog:
+http://www.qianyunlai.com/post-702.html#147

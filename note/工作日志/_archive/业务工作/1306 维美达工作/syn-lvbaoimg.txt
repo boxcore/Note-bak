@@ -1,0 +1,22 @@
+
+
+vps02i2s2m8
+screen -S lvbaoimg
+lftp -u lvbao/lvbao,great0086 -e"mirror --delete --only-newer --verbose / /www/lvbaoimg" v0.ftp.upyun.com
+
+
+
+lftp -u lvbao/lvbao,great0086 -e"mirror --delete --only-newer --verbose / /home/wwwroot/lvbaoimg" v0.ftp.upyun.com
+
+lftp -u lvbao/lvbao,great0086 -e"mirror --delete --only-newer --verbose / /home/wwwroot/lvbaopifa_com/public_html/imgs" v0.ftp.upyun.com
+
+
+本地同步到远程
+lftp -u thunje,abc654321 -e"mirror -R --delete --only-newer --verbose /home/wwwroot/lvbaopifa_com/public_html /home/wwwroot/lvbaopifa.com" 108.62.36.189
+
+
+/home/wwwroot/lvbaopifa_com/public_html 
+/home/wwwroot/lvbaopifa.com
+
+
+/home/wwwroot/lvbaopifa_com/public_html/imgs/

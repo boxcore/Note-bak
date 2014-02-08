@@ -1,0 +1,13 @@
+开发账号：
+svnchina.com 账号： boxcore // n61
+
+
+BOSS系统账号：
+BOSS 线上系统账号：huangchunze // MgZXiU3s9g4588p
+BOSS 线上测试系统：admin // 6xOlLFNt
+BOSS 本地测试账号：admin // admin123
+
+
+开发机账号：
+SSH  账号：
+SAMBA账号： huangchunze//huangchunze123

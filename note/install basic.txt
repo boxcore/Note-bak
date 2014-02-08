@@ -1,0 +1,66 @@
+#!/bin/bash
+yum -y install make wget screen gcc gcc-c++ cmake ncurses-devel autoconf automake zlib libxml2 libgcrypt libtool bison
+yum clean all
+wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35-linux2.6-x86_64.tar.gz
+wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35-linux2.6-i686.tar.gz
+
+wget http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.35.tar.gz
+wget http://mirrors.sohu.com/php/php-5.3.28.tar.gz
+wget http://mirrors.sohu.com/nginx/nginx-1.5.8.tar.gz
+wget http://www.cmake.org/files/v2.8/cmake-2.8.12.tar.gz
+
+
+--------------------------------
+#安装mysql
+useradd -M -s /sbin/nologin mysql
+tar -zxvf /root/src/mysql-5.5.35.tar.gz
+cd /root/src/mysql-5.5.35
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/usr/local/mysql/data -DSYSCONFDIR=/etc -DWITH_MYISAM_STORAGE_ENGINE=1 -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_ARCHIVE_STORAGE_ENGINE=1 -DWITH_BLACKHOLE_STORAGE_ENGINE=1 -DENABLED_LOCAL_INFILE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DEXTRA_CHARSETS=utf8 -DMYSQL_TCP_PORT=3306 -DMYSQL_USER=mysql -DMYSQL_UNIX_ADDR=/tmp/mysql.sock -DWITH_SSL=yes -DWITH_PARTITION_STORAGE_ENGINE=1 -DINSTALL_PLUGINDIR=/usr/local/mysql/plugin -DWITH_DEBUG=0 
+
+make && make install
+cp support-files/my-medium.cnf /etc/my.cnf
+chmod 755 scripts/mysql_install_db
+#初始化数据库
+scripts/mysql_install_db  --user=mysql  --basedir=/usr/local/mysql --datadir=/data/mysql/
+#设置开机启动mysql
+cp support-files/mysql.server /etc/init.d/mysql
+chmod 755 /etc/init.d/mysql
+chkconfig mysql on
+echo 'export PATH=/usr/local/mysql/bin:$PATH' >> /etc/profile
+
+#初始化mysql密码
+/usr/local/mysql/bin/mysqladmin -u root password 'abc654321'
+ps -aux |grep mysql
+/etc/init.d/mysql start
+
+#参考 ：http://caiyufei.blog.51cto.com/1521312/1172378     和 http://www.sunchis.com/html/db/mysql/2013/0427/448.html
+
+------------------------
+nginx
+
+cd /root/src/nginx-1.5.8
+yum -y install pcre-devel openssl openssl-devel
+yum install -y gcc autoconf curl freetype gd jpegsrc libiconv libmcrypt libpng
+yum install -y libxml2 mhash ncurses openssl openssl-devel pcre-devel zlib-devel libmcrypt-devel curl-devel
+
+groupadd www 
+useradd -g www www -s /bin/false
+./configure --prefix=/usr/local/nginx --without-http_memcached_module --user=www --group=www --with-http_stub_status_module --with-openssl=/usr/ --with-pcre=/root/src/pcre-8.34
+make && make install
+
+# 参考 http://www.ctohome.com/FuWuQi/84/243.html
+
+
+
+------------------
+安装php
+--------------------
+
+cd /root/src/php-5.3.9
+./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysql=/usr/local/mysql --with-mysql-sock --with-pdo-mysql --with-zlib --with-libxml-dir --with-curl --with-xmlrpc --with-openssl --with-mhash --with-mcrypt --with-pear --enable-mbstring --enable-sysvshm --enable-zip  --enable-soap --enable-sockets && make && make install
+
+# http://www.cnblogs.com/kootao/p/3245484.html
+ 
+http://www.cnblogs.com/kootao/p/3245484.html
+
+

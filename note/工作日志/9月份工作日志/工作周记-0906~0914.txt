@@ -1,0 +1,180 @@
+/**
+ * 开发账号
+ *
+ */
+192.168.13.108 ssh账号 	huangchunzhe // 123456
+svnchina.com 	账号： 	boxcore // n61
+romeo.7808.cn 			admin//123456
+for bind ip
+
+
+/**
+ * 20130909 工作任务：
+ */
+
+//代码规范
+不明白的点：
+	5.	代码中不准出现“魔数”、“幻数”，必须声明为常量，尽量声明为类常量。
+	
+//项目熟悉（熟悉xxoo框架、查看代码结构）
+
+要求:
+	1）熟悉xo框架的结构
+	2）写一个基于xo的用户管理，权限管理（）
+	3）sql操作应该注意的事项。
+	4）
+
+//首页添加广告
+今日主题工作内容：
+	1.熟练公司框架进行开发，今日先实现首页广告位的添加。涉及到的操作：c和v的操作
+	2. romeo.7808.cn 后台的操作，添加公共，公共的名称公有意识：
+		A-A-A
+		A-A-B
+		
+	3.添加广告遍历使用混编模式一个典型的样式是：
+	先判断是否已经取出数据：<?php if ( !empty( $ads_1 ) ): ?> 结束的标记为 <?php endif; ?>
+	包含的遍历可能有：<?php foreach ( array_slice($ads_1, $i*2, 2) as $v ):?>
+        结束标记： <?php endforeach; ?>
+
+	问题：a标签中属性：stat-mark的作用？
+		用户统计跟踪，格式为 ： stat-mark="<?php echo 'ad-'.$v['id']; ?>"
+	
+	4. 图片加载lazy jq库
+		一个典型的调用：
+			<a href="#">
+        		<img class="lazy" data-url="<?php echo site_url('static/images/3.jpg'); ?>" 
+        			src="<?php echo site_url('static/images/pixel.gif'); ?>" width="130" height="49">
+        	</a>
+			
+			js层代码的调用：
+			<script type="text/javascript" src="<?php echo site_url('static/scripts/jquery1.7.1.min.js').'?v='.conf('app', 'ran_beat'); ?>"></script>
+			<script type="text/javascript" src="<?php echo site_url('static/scripts/lazyload.js').'?v='.conf('app', 'ran_beat'); ?>"></script>
+			<script type="text/javascript">
+				$(function(){
+					$(".lazy").scrollLoading();
+				})
+			</script>
+			
+		处理方法：
+		正则替换：<img\s+src="(<\?php\s+.+\s+\?>)"
+		替换为： <img class="lazy" data-url="$1" src="<\?php echo site_url\('static\/images\/pixel.gif'\); \?>"
+	
+	5. 完成后熟悉下php层面的逻辑
+	6. 所有广告链接都需要添加 target="_blank" 在新窗口打开。
+
+		<a(.+)[?!target]>(.+)</a>
+		替换为：
+		<a target="_blank" $1>$2</a>
+		
+		查有target的a：<a.+(\b^(target="_blank")).+>(.*)</a>
+		
+		批量修改标签 不带target的标签方法：
+		修正后的匹配方式 ：
+			<a\s+(?!target="_blank")(.+)>(.*)</a>
+		替换为：
+			<a target="_blank" $1>$2</a>
+			
+/**
+ * 20130910 工作任务：
+ */
+
+ 
+ 
+/**
+ * 20130911 工作任务：
+ */
+
+
+
+
+/**
+ * 0912 工作任务
+ *
+ */
+//功能开发
+1.公司详情页面添加
+2.文章详情页面添加
+	
+
+/**
+ *  0913工作任务
+ * 
+ */
+//功能开发
+1.文章内容添加分页
+	model：public function contentPages()
+	字段content中 分页的标记符号是：{{pagebreak/}}
+	
+2. 周测试任务
+	开发成功的模块： 
+		首页
+		分类列表页面
+		热门标签页面
+		文章详情页面
+		公司介绍页面
+
+
+//网站修改
+	1、底部公司介绍和关于我们列表页面添加 rel="nofollow" 停止跟踪
+		copyright标符：添加样式style="font-family:Arial,Helvetica;" 
+		
+	2.批量添加统计属性 ：所有ad位置添加统计：
+	stat-mark="<?php echo 'ad-'.$v['id']; ?>"
+		替换过程：<a\s+target="_blank"\s+(?!stat-mark=)(.+)>(.*)</a>
+		替换为：<a target="_blank" stat-mark="<?php echo 'ad-'.$v['id']; ?>" $1>$2</a>
+	
+	3. site_image_url 替换为 imgTplReplace 图片地址自定义调配。
+	
+//周测试任务
+描述：测试本周添加的功能
+
+	
+//学习新东西
+
+/**
+ * 0914 服务器迁移 
+ *
+ */
+
+//远程IP对照
+114.112.86.79		211.155.87.219
+114.112.86.80		211.155.87.220
+114.112.86.81		211.155.87.221
+
+//凌晨测试bug
+
+//背景 ：清空数据库
+	1.首页和分类页面的底部调用不出
+	2.导航分类查询不出的情况下要直接抛出404
+	3.单页如果有正则入口，一定先判断有没有mark下相应的内容，执行抛404页面
+	4.所有有调用到数据的地方一定要用 ！empty判断
+	5.搜索关键字没有做过滤，没有做最小字符和通配符限制， eg：搜索<script>alert(11111)</script>
+		会跳到的链接 ： http//new.6788.cn/?__auction=&s=%3Cscript%3Ealert%28111%29%3C%2Fscript%3E
+	6.推广的项目图片的调用和默认图片调用未做 http://new.6788.cn/tuijian/huotuichang
+	7.文章内容添加判断，推送的时候没能保存好site_id(文章和项目分类的ID)
+	
+
+//迁移服务器 6788.cn网站上传到线上
+
+
+/*************** 周总结 *****************/
+//各个表查询的限制条件：
+1.文章页面的查询限制：
+	查询的依据是文章是否存在于 article_push 表中
+	`site_id` = '.site_id()
+	标准查询语句是：
+		'SELECT a.*, b.`push_time` FROM `article` AS a, `article_push` AS b WHERE '.
+		'( a.`id` = b.`article_id` ) AND (`site_id` = '.site_id().') AND ( b.`push_time` <= "'. date('Y-m-d H:i:s', time()) .'") ';
+		
+2.链接处理：
+	a. 站内链接和静态资源： site_url();
+	b. 内容图片地址：imgTplReplace(); //之前用site_image_url 现在已经废弃
+	c. 
+
+3.错误和异常处理：
+	a. 没有查询到的页面显示404： show_404();
+	b. try...catch.. 捕获异常的处理，现在用在pango公共函数的调用上。具体捕获内容还需要去了解。
+	c. 搜索页面的列表使用估算值，不到3个页面也先给3个页面。。。
+	
+4.
+	

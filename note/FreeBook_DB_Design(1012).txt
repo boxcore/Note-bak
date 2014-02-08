@@ -1,0 +1,187 @@
+FreeBook图书系统表设计
+约定：
+	表前缀： fb_
+	mysql : innodb
+	
+1.图书库（books）
+book_id
+book_name 		书名
+cat_id			图书分类
+book_cover		图书封面
+book_author		图书作者
+book_sn			ISBN编码
+book_price		价格
+book_publics 	出版社
+book_grade		图书评分（采自豆瓣的评分，与网站用户的评分系统独立区分）
+book_intro 		图书介绍
+book_tags		图书标签
+book_pdate		图书出版日期
+book_detail		图书详情
+book_point		下载所需积分（前期先不加，默认免积分免登录下载）
+book_aid 		添加的管理员
+
+book_status
+book_ctime
+book_mtime
+
+
+2.图书下载资源表（books_down）
+down_id (简化：book_rid)
+book_id			关联图书id
+down_type		下载类型 （0~10）
+down_url		下载链接
+down_desc		下载描述
+
+
+3.图书分类（category）
+cat_id
+cat_pid		父类 0为一级
+cat_name
+cat_desc
+sort		排序
+
+cat_status	显示状态
+cat_ctime
+cat_mtime
+
+
+3.用户表（users）
+user_id
+user_name
+password
+email
+tel
+birthday
+addr		用户地址
+rank		用户等级
+credit		积分
+question 	密保问题
+answer		密保答案
+
+last_login	最后登陆时间
+user_status	用户状态：已经注册、已经验证账号（邮箱）、禁止账户、禁止评论
+user_ctime
+user_mtime
+
+
+4.用户关注图书表（user_focus）
+focus_id
+user_id
+book_id
+book_name
+
+time
+
+
+5.用户收藏图书表（user_collect）
+collect_id
+user_id
+book_id
+book_name
+
+time
+
+
+5.用户图书评分（user_score）
+score_id
+user_id
+user_name
+book_id
+book_name
+score_grade		评分的等级：5个等级
+
+time
+
+
+6.评论（comment）
+comment_id
+comment_pid
+email
+user_id
+content
+
+comment_status	N:禁止显示 Y：允许评论 W：待审核 || 或者数字
+comment_ctime
+
+
+7.管理员(admin) 目前系统只有3个管理员，不需要rbac！
+admin_id
+group_id		所属管理员组
+admin_name		管理员名
+password
+email
+
+last_ip			最后登陆ip
+admin_status
+admin_ctime
+admin_mtime
+
+
+8.图书下载历史(book_flow)
+flow_id
+book_id		图书ID
+book_name	图书名
+user_id		用户ID
+user_name	用户名
+down_credit	下载积分
+flow_time	下载时间
+	*积分可先不加人，后期需要添加时要做判断：已经用积分下载过的一个月免积分下载
+	
+	
+7.网站公告（notice）
+notice_id
+title
+content
+admin_id
+
+notice_ctime
+notice_mtiem
+
+8.文章(article)
+article_id
+cat_id
+rel_book_id		相关图书ID，多个用逗号隔开，建议拆出
+rel_book_cat	相关图书分类ID，多个用逗号隔开，建议拆出
+article_title
+content
+
+admin_id
+article_status	文章显示状态
+article_ctime
+article_mtime
+
+
+9.文章分类（article_cat）
+cat_id
+cat_pid
+cat_type	文章分类类型，写死，0系统帮助，1普通文章
+cat_name
+cat_desc
+
+cat_ctime
+cat_mtime
+
+
+10.标签表（tags）
+tag_id
+tag_name
+
+time
+
+
+11.网站配置表(configs) 【网站的配置表，如网站的开关，大部分都要写死的当然，也考虑直接在文件中写】
+id		
+pid		所属配置组
+mark	标识符号
+type	类型限定
+range	长度
+dir		目录
+value	值
+
+
+
+
+
+
+
+

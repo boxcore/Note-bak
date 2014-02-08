@@ -1,0 +1,5 @@
+vi /etc/sysconfig/network
+------------
+hostname 值修改成相应的名字即可
+
+工作组名：修改/etc/samba/smb.conf中的workgroup = 你的工作组名，server string = 你的计算机说明

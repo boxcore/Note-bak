@@ -1,0 +1,43 @@
+// 配置网站需要密码访问（基于nginx）
+
+cd /usr/local/nginx/conf/
+wget http://trac.edgewall.org/export/10770/trunk/contrib/htpasswd.py
+chmod 777 htpasswd.py
+./htpasswd.py -c -b htpasswd username password
+// -c为生成文件 htpasswd为文件名 我执行的语句是 "./htpasswd.py -c -b htpasswd admin admin7808"
+
+nginx.conf：
+============================================
+server {
+    server_name d8.neolee.com;
+    root /var/www/d8.neolee.com;
+    # include /etc/nginx/fastcgi_php;
+    location / {
+     auth_basic            "Password please";
+     auth_basic_user_file  /usr/local/nginx/conf/htpasswd;
+        index index.php;
+        if (!-e $request_filename) {
+            rewrite ^(.*)$  /index.php last;
+        }
+    }
+}
+============================================
+上面的会影响到全局，如果需要在某个虚拟站中运行的话直接在虚拟配置中添加：
+注意：在指定root目录之后添加：
+location / {
+	auth_basic            "Password please";
+	auth_basic_user_file  /usr/local/nginx/conf/htpasswd;
+	index index.php;
+	if (!-e $request_filename) {
+		rewrite ^(.*)$  /index.php last;
+	}
+}
+
+
+/**
+参考文章：
+http://dreamfire.blog.51cto.com/418026/1141385
+http://neolee.com/web/nginx-http-basic-auth/
+
+**/
+

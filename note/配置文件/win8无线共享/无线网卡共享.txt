@@ -1,0 +1,11 @@
+
+
+netsh wlan set hostednetwork [mode=]allow|disallow  //开启或关闭共享网络
+netsh wlan set hostednetwork mode=allow ssid=Boxcore key=abc654321
+netsh wlan start hostednetwork
+netsh wlan stop hostednetwork
+netsh wlan show drivers
+
+netsh wlan refresh hostednetwork [data=] key  //更改密码
+
+* 注意共享的时候要勾选允许
