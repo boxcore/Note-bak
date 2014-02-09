@@ -1,0 +1,201 @@
+vsftpd 安装
+
+/**
+ * 安装vsftpd
+ */
+
+rpm -qa|grep vsftpd
+
+// install vsftpd by yum and set boot after
+yum -y install vsftpd
+chkconfig vsftpd on
+service vsftpd start
+
+// set iptables
+vim /etc/sysconfig/iptables
+---------
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 21 -j ACCEPT
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 64000:65535 -j ACCEPT
+----------
+service iptables restart
+
+
+
+/**
+ * 设置
+ */
+
+vim /etc/vsftpd/vsftpd.conf
+
+将
+-------------------------
+#chroot_list_enable=YES
+# (default follows)
+#chroot_list_file=/etc/vsftpd.chroot_list
+-------------------------
+修改为：
+-------------------------
+chroot_list_enable=YES
+# (default follows)
+chroot_list_file=/etc/vsftpd/chroot_list
+-------------------------
+
+// 添加用户
+groupadd ftp
+useradd -d /home/www/ftpuser -g ftp -s /sbin/nologin ftpuser
+passwd ftpuser
+
+// 创建chroot list，将用户ftp加入其中：  
+touch /etc/vsftpd/chroot_list
+echo ftp >> /etc/vsftpd/chroot_list
+// 或：
+// 添加ftp下的用户 一行一个用户
+// vim /etc/vsftpd/chroot_list
+
+// 进行认证：首先，安装Berkeley DB工具，很多人找不到db_load的问题就是没有安装这个包。
+yum install db4 db4-utils
+
+// 创建用户密码文本 【注意奇行是用户名，偶行是密码】
+vim /etc/vsftpd/vuser_passwd.txt
+------------
+thunje
+pwd
+------------
+
+// 生成虚拟用户认证的db文件
+db_load -T -t hash -f /etc/vsftpd/vuser_passwd.txt /etc/vsftpd/vuser_passwd.db
+
+// 随后，编辑认证文件/etc/pam.d/vsftpd，全部注释掉原来语句，再增加以下两句：
+auth required pam_userdb.so db=/etc/vsftpd/vuser_passwd
+account required pam_userdb.so db=/etc/vsftpd/vuser_passwd
+
+// 虚拟用户个性CentOS FTP服务文件
+mkdir /etc/vsftpd/vuser_conf/
+vi /etc/vsftpd/vuser_conf/thunje/*（注：文件名等于vuser_passwd.txt里面的账户名，否则下面设置无效）*/
+-----------------------------------------------------
+local_root=/home/www #虚拟用户的根目录(根据实际修改)
+write_enable=YES #可写
+anon_umask=022 #掩码
+anon_world_readable_only=NO
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
+-----------------------------------------------------
+
+
+/**
+最新的vsftpd要求对主目录不能有写的权限所以html为755 主目录下面的子目录再设置777权限
+mkdir /var/www/html/ftp
+chmod –R 755 /var/www/html
+chmod –R 777/var/www/html/ftp
+**/
+
+
+
+
+/**
+ *  其他
+**/
+Linux vsftpd配置参数介绍：
+linux vsftpd的配置参数很多，我们可以通过man 5 vsftpd.conf命令获取到vsftpd.conf配置文件的详细帮助信息。下面介绍一些vsftpd常用的参数。
+
+1. 与服务器相关的设置参数
+connect_from_port_20=YES|NO
+是否使用20号端口做为ftp-data的端口号
+listen_port=21
+设置ftp命令通道的端口号
+dirmessange_enable=YES|NO
+message_file=.message
+上面两个参数用来配置用户进入到目录时显示某个文件中的内容。
+listen=YES|NO
+设置vsftpd是否stand alone方式启动。
+pasv_enable=YES|NO
+是否开启被动模式。
+write_enable=YES|NO
+用来设置是否允许用户上传文件。
+idle_session_timeout=300
+如果用户300秒内没有命令操作，则强制离线。
+max_Clients=0
+当vsftpd以stand alone运行时，用来设置最大同时在线数。
+max_per_ip=0 用于设置同一IP允许的同时最大连接数。
+pasv_max_port=0
+pasv_min_port=0
+用来设置被动模式(passive mode)使用的端口范围，为0时不受限制。
+ftpd_banner="欢迎语句"
+banner_file=/path/file
+设置当用户连接到vsftpd服务器时显示的欢迎信息。
+
+
+2. 与用户相关的参数
+guest_username=ftp
+指定来宾用户身份的用户名
+guest_enable=YES|NO
+是否将非匿名用户映射成来宾用户。
+local_enable=YES|NO
+是否允许/etc/passwd中的用户以实体用户的身份登录到ftp服务器。
+local_max_rate=0 设置实体用户的传输速度，单位为bytes/s。
+chroot_local_user=YES|NO
+chroot_list_enable=YES|NO
+chroot_list_file=/etc/vsftpd/chroot_list
+用来设置哪些用户被限制在自己的目录内无法离开。
+userlist_enable=YES|NO
+userlist_deny=YES|NO
+userlist_file=/etc/vsftpd/user_list
+用来阻止相关用户登录到vsftpd服务器。  3. 匿名用户相关的参数
+anonymous_enable=YES|NO
+是否允许anonymouns用户登录到vsftpd服务器，下面的设置仅在此参数为YES时才有效。
+anon_world_readable_only=YES|NO
+仅仅允许下载可读的文件。
+anon_mkdir_write_enable=YES|NO
+anon_upload_enable=YES|NO
+anon_other_write_enable=YES|NO
+用于设置相关可写权限。
+no_anon_password=YES|NO
+anonymous登录时是否可以省略密码。
+anon_max_rate=0
+设置anonymous的最大传输速度。
+anon_umask=077
+anonymous用户上传文件的权限掩码。
+
+
+4. 与安全相关的参数：
+
+ascii_download_enable=YES|NO
+ascii_upload_enable=YES|NO
+是否允许ascii方式传输。
+xferlog_enable=YES|NO
+xferlog_file=/var/log/vsftpd.log
+是否记录用户下载上传的文件。
+Linux下vsftpd服务的启动
+1. 使用stand alone模式启动：
+# /etc/rc.d/init.d/vsftpd start
+# service vsftpd start
+2. 使用super daemon来启动：
+①. 将/etc/vsftpd/vsftpd.conf中的"listen=YES"改成"listen=NO"
+②. # vi /etc/xinetd.d/vsftpd
+service ftp
+{
+socket_type=stream
+wait=no
+user=root
+server=/usr/sbin/vsftpd
+log_on_success+=DURATION USERID
+log_on_failure+=USERID
+nice=10
+disable=no
+}
+#注意大小写
+③. # service vsftpd stop
+# service xinetd restart
+常见问题：
+1. 问：我在客户端成功的登录到ftp服务器上后，为什么使用dir命令没有任何反应？
+答：您可能位于局域网内，请尝试使用被动模式。
+2. 问：为什么我的root用户不能登陆到我的vsftpd ftp服务器？
+答：linux默认情况下不允许root登陆到ftp服务器的,在ftpuser,user_list去掉root用户就可以登录了。
+
+
+
+
+参考：
+http://down.chinaz.com/server/201202/1651_1.htm
+http://wiki.centos.org/HowTos/Chroot_Vsftpd_with_non-system_users 脚本管理

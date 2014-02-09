@@ -1,10 +1,10 @@
 
-mkdir -pv /opt/svn/wfy/
-/usr/local/svn/bin/svnadmin create /opt/svn/wfy/
+mkdir -pv /opt/svn/52milan/
+/usr/local/svn/bin/svnadmin create /opt/svn/52milan/
 
 
 /*修改配置文件*/
-cd /opt/svn/wfy/conf/
+cd /opt/svn/52milan/conf/
 vim svnserve.conf
 
 -----------
@@ -17,31 +17,31 @@ authz-db = authz
 
 vim authz
 ----------------
-[wfy:/]
+[52milan:/]
 hcz = rw
-zsj = rw
+ygl = rw
 ----------------
 
-# vim passwd
+vim passwd
 -------------
 hcz = hcz_2014@
-zsj = zsj2014@
+ygl = ygl2014@
 --------------
 
 // 设置钩子
-mkdir -pv /home/www/wfy
-/usr/local/svn/bin/svn checkout svn://115.47.14.64/wfy  /home/www/wfy --username hcz --password hcz_2014@
-/usr/local/svn/bin/svn update /home/www/wfy --username hcz --password hcz_2014@
-chown -R www:www /home/www/wfy
+mkdir -pv /home/www/alan/52milan.com
+/usr/local/svn/bin/svn checkout svn://115.47.14.64/52milan  /home/www/alan/52milan.com/ --username hcz --password hcz_2014@
+/usr/local/svn/bin/svn update /home/www/alan/52milan.com --username hcz --password hcz_2014@
+chown -R www:www /home/www/alan/52milan.com
 
-vim /opt/svn/wfy/hooks/post-commit
+vim /opt/svn/52milan/hooks/post-commit
 ------------
 #!/bin/sh
 SVN=/usr/local/svn/bin/svn
-WEB=/home/www/wfy
+WEB=/home/www/alan/52milan.com
 $SVN update $WEB --username hcz --password hcz_2014@
 chown -R www:www $WEB
 -------------
 
-chmod 777 /opt/svn/wfy/hooks/post-commit
-/opt/svn/wfy/hooks/post-commit -t
+chmod 777 /opt/svn/52milan/hooks/post-commit
+/opt/svn/52milan/hooks/post-commit -t
