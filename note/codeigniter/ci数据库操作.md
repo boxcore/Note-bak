@@ -5,8 +5,12 @@
 我的常用函数
 
     /*  链式方法 */
-    $this->db->select('title')->from('mytable')->where('id', $id)->limit(10, 20);
+    $this->db->select('title')->from('mytable')->where('id', $id)->order_by('id', 'DESC')->limit(10, 20);
     $query = $this->db->get();
+	
+	$query->result_array()  多条
+	$query->row_array()	单条
+	
 
 ------------------------------------------------
 

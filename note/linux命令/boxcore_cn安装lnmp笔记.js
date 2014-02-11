@@ -372,5 +372,6 @@ location ~ \.php$ {
         }
 =============================================================
 
+修改了php配置或者nginx中设置了与php相关的配置后需要重启 php-fpm 和 nginx后方能正常。
 service php-fpm start
 service nginx restart

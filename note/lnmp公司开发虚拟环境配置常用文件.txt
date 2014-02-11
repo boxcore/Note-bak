@@ -1,0 +1,9 @@
+
+php.intµÿ÷∑£∫ vim /usr/local/php/etc/php.ini
+---------------
+data.timezone = Asia/Chongqing
+--------------
+
+service php-fpm restart
+service nginx restart
+
