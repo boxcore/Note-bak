@@ -1,0 +1,6 @@
+Ò»¡¢ÅÐ¶ÏµÇÂ½
+Ê¹ÓÃsessionÀ´ÅÐ¶ÏµÇÂ½£º
+	'uid'        => $row['uid'],
+	'username'   => $row['username'],
+	'logined_in' => true,
+	'groupid'    => $row['groupid'],
