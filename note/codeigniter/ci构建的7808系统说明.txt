@@ -5,7 +5,13 @@
 一、COOKIE 和SESSION格式
 
 1.1 用户登陆的cookie数组格式
-
+	$this->session->set_userdata(
+		array(
+			'uid'        => $row['uid'],
+			'username'   => $row['username'],
+			'logined_in' => true,
+			'groupid'    => $row['groupid'],
+		));
 
 
 1.2 

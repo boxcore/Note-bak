@@ -11,6 +11,9 @@
 	$query->result_array()  多条
 	$query->row_array()	单条
 	
+	
+	打印最后执行的sql：$this->db->last_query();  返回的是最后执行的sql语句
+	
 
 ------------------------------------------------
 
