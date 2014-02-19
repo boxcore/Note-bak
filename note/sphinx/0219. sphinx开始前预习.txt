@@ -1,0 +1,18 @@
+一、引导问题
+	1. sphinx 跟php 的互相工作机制和易用性如何？
+	2. sphinx与lucence的区别和各自的优点？
+	3. centos上安装好sphinx和常用的配置？
+	4. sphinx针对现在我们的业务要如何处理数据？
+	
+	实例： ask. 7808. com站的问答搜索项目使用sphinx的实现。
+	
+	sphinx官方：http://sphinxsearch.com/
+	有针对中文做sphinx优化：Coreseek开源项目 ：http://www.coreseek.cn/
+	
+	
+二、 预热sphinx的参考文档
+	1. 现在所有的搜索产品： http://www.searchtools.com/tools/tools.html 
+	2. http://www.qixing318.com/article/the-installation-of-fedora-under-chinese-search-sphinx-configuration.html
+	3. 总结国外对比sphinx的优缺点：http://sg552.iteye.com/blog/1560834
+	4. 某博客的sphinx实战：http://www.ttlsa.com/?s=sphinx
+	
