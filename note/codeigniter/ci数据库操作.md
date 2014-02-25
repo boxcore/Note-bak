@@ -13,7 +13,11 @@
 	
 	
 	打印最后执行的sql：$this->db->last_query();  返回的是最后执行的sql语句
+
 	
+- 获取插入的ID ： **$this->db->insert_id();**
+- 获取最后执行的sql语句：**$this->db->last_query();**
+
 
 ------------------------------------------------
 
@@ -24,7 +28,7 @@
 $this->load->database(); //数据库配置载入并初始化数据库类
 
 
-### 三、数据库查询
+### 三、数据库查询(SELECT)
 
 
 3.1. 多结果标准查询
@@ -52,7 +56,7 @@ $this->load->database(); //数据库配置载入并初始化数据库类
 	echo $row['name'];
 
 
-3. 快捷查询  
+3.3 快捷查询  
 
 快捷查询类能为我们提供快速取得数据的途径:
     
@@ -61,22 +65,24 @@ $this->load->database(); //数据库配置载入并初始化数据库类
 
 注意：$query->result() 这样的对象查询必须要有"()"否则查询不出东西。
 
+
+
 ### 四、数据库插入
 
 4.1 标准插入(insert)
 
-$sql = "INSERT INTO mytable (title, name) 
-        VALUES (".$this->db->escape($title).",".$this->db->escape($name).")";
-$this->db->query($sql);
-echo $this->db->affected_rows();
+	$sql = "INSERT INTO mytable (title, name) VALUES (".$this->db->escape($title).",".$this->db->escape($name).")";
+	$this->db->query($sql);
+	echo $this->db->affected_rows();
 
 
 4.2 快捷插入(insert)
 
-$data = array('title' => $title,'name' => $name,);
-$this->db->insert('mytable', $data); 
-// Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')
+	$data = array('title' => $title,'name' => $name,);
+	$this->db->insert('mytable', $data); 
+	// Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')
 
+- 获取插入的ID ： $this->db->insert_id();
 
 ### 五、数据库更新
 
