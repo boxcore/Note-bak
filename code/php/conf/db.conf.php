@@ -7,30 +7,28 @@ define('DB_PASSWORD', '123456');
 define('DB_NAME', 'xinwenda');
 
 //数据库连接
-$link = mysql_connect('localhost', 'root', '123456');
+$link = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD);
 if( !$link ){
     die('Counld not connect: ' . mysql_error());
 }
 
 // 获取编码
-$charset = mysql_client_encoding($link);
+$GLOBALS['app']['db']['charset'] = mysql_client_encoding($link);
 // echo $charset;
 
-// 选择数据库
-mysql_select_db('xinwenda');
+// 选择默认数据库
+mysql_select_db(DB_NAME);
 
 $sql = 'select * from `xwd_city` where id>=100';
 $result = mysql_query($sql);
 
+
 /**
- * 批量转汉字为拼音
+ * mysql常用demo （注释状态）
  */
-//include('pinyin.fn.php');
-//while($row=mysql_fetch_array($result)){
-//    $mark = Pinyin($row['name'],'utf8');
-//    mysql_query("update `xwd_city` set mark = '{$mark}' where id = {$row['id']} ");
-//
-//}
+// 
 
 
-mysql_close($link);
+
+// mysql 关闭句饼
+// mysql_close($link);
