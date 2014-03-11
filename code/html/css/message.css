@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{margin:0;padding:0; border:0;}
+body{font-size:12px;font-family:"宋体", Arial, Helvetica, sans-serif;}
+ul{list-style:none;}
+img{border:0;}
+a{text-decoration:none; color:#000;}
+ 
+.clear{clear:both;height:0;font-size: 1px;line-height: 0px;}
+.floleft{float:left;}
+.floright{float:right;}
+input{font-family:"微软雅黑";}
+/* message_board*/
+.message_board{ width:486px; height:378px; margin:0 auto;}
+.message_board .an1 {background: url(/static/img/gb/master/0.1/guestbook_right_input.png) left top repeat-x;border: 1px solid #B9B9B9;height: 25px;line-height: 25px;margin: 0;padding: 0 3px;width: 202px;}
+.message_board ul li {clear: both;padding:18px 0px 4px; width:450px; }
+.message_board em{ color:#F00; }
+.message_board span{ margin-left:5px;}
+font{ margin-left:10px;}
+li.guestbook_comments {width: 234px;height: 110px;}
+.form_textarea_2{height:151px;border: 1px #B9B9B9 solid;width: 234px;padding:3px;resize: none;  ax-width: 234px;max-height: 151px; }
+ .message_board .guestbook_comments .form_textarea_2 {color: #999;}
+.guestbook_comments label {display: inline;float: left;font-size: 14px;height: 24px;line-height: 24px;text-align: left;width: 44px;overflow: hidden;}
+.message_board .guestbook_comments .form_textarea_2,   .guestbook_comments .form_textarea {
+border: 1px #B9B9B9 solid;width: 202px;padding: 3px;height: 109px;font-size: 12px; }
+textarea {overflow: auto;}
+user agent stylesheettextarea {font-family: monospace;}
+user agent stylesheettextarea {-webkit-appearance: textarea;background-color: white;border: 1px solid;
+border-image: initial;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-box-orient: vertical;resize: auto;cursor: auto;padding: 2px;white-space: pre-wrap;word-wrap: break-word;}
+user agent stylesheetinput, textarea, keygen, select, button, isindex {margin: 0em;font: -webkit-small-control;color: initial;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;text-indent: 0px;text-shadow: none;display: inline-block;text-align: -webkit-auto;}
+.guestbook_txt {background: #F6F6F6;border: 1px #BABABA dashed; height:113px;width: 200px; overflow: hidden; margin-top:-175px; margin-left:270px; padding-top:5px; padding-left:5px; line-height:23px;}
+.hide {display: none;}
+.submit_btn{ text-align:center; background:url(../images/cityarticle/submit.jpg) no-repeat;  width:158px; height:39px; color:#FFF; font-size:14px; font-weight:bold; margin-left:170px;   }
+
+/*left_top*/
+.center_left .left_top{ width:786px;   height:150px; margin-left:30px;  margin-top:100px;text-indent:30px;overflow:hidden;}
+.center_left .left_top p{ font-size:14px; width:786px;   height:58px; overflow:hidden;}
+.center_left .left_top span{  font-size:18px; color:#F00; }
+.center_left .left_top img{ margin-left:10px;}
+

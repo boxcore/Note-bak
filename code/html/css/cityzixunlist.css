@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0; border:0;}
+body{font-size:12px;font-family:"宋体", Arial, Helvetica, sans-serif;}
+ul{list-style:none;}
+img{border:0;}
+a{text-decoration:none;} 
+.clear{clear:both;height:0;font-size: 1px;line-height: 0px;}
+.floleft{float:left;}
+.floright{float:right;}
+input{font-family:"微软雅黑";}
+ 
+
+/*#center*/
+#center{ width:1188px; min-height:1210px; margin-top:20px;}
+a{ color:#000;}
+a:hover{ color:#900;}
+.navn{ width:807px; height:71px; overflow:hidden; background:url(../images/cityzixunlist/navn_mg.jpg) no-repeat; margin-top:15px; font-size:14px; font-weight:bold;  font-family:"微软雅黑";}
+.navn ul li{ float:left; width:64px; height:71px; line-height:30px; margin-top:15px;  margin-left:13px;   text-align:center; background:url(../images/cityzixunlist/navn_li.jpg) no-repeat; }
+.navn ul li a{ display:block; color:#be0004;  width:64px; height:30px;} 
+.navn ul li a:visited{} 
+.navn ul li a:hover{  color:#FFF; background:#900;  }
+
+#center .current{ width:326px; height:17px; }
+#center .left{ width:807px;float:left;}
+#center .left_w{ display: block;  height: 0;  clear: both;  width:807px; height: auto; border:solid #d3d3d3 1px; margin-top:10px;  }
+/*#center .left_w  .left_test{width:807px; height:1000px;overflow:hidden;}*/
+#center .first_paragraph{ width:753px; height:141px; background:url(../images/cityzixunlist/left_xian.jpg) bottom no-repeat;  overflow:hidden; position:relative;}
+#center .first_paragraph img{ position:absolute; top:20px;  left:20px;}
+#center .first_paragraph h3{ padding-top:16px; font-size:16px; margin-left:37px ;}
+#center .first_paragraph p{ font-size:14px; margin-top:8px; margin-left:10px; text-indent:25px; overflow:hidden;line-height:30px;}
+.article{  width:742px; height:53px; overflow:hidden;}
+#center .first_paragraph span{ margin-left:25px; font-size:12px; }
+#center .first_paragraph span.time{ padding-left:25px; }
+#center .page{ margin-left:407px; margin-top:30px; width:347px; height:57px;   }
+#center .page a{ display:block; float:left; border:solid #dcdcdc 1px; height:27px; width:25px; margin-left:8px; text-align:center; line-height:27px; }
+#center .page a.next{height:27px; width:54px;}
+#center .page a:hover{background:#036ebe; color:#FFF;}
+/*right*/
+#center .right{ width:334px; height:1081px; float:right; margin-top:10px; }
+#center .right .img1{ width:333px; height:198px;}
+#center .right_hot{ width:331px; height:360px; border:solid #CCC 1px; margin-top:10px; position:relative;}
+#center .right_hot img{margin-top:10px; margin-left:10px; }
+#center .right_hot h3{ margin-top:-17px; margin-left:25px;  }
+#center .right_hot dl{ line-height:32px; margin-left:30px;}
+#center .right_hot dt{ float:left; width:231px; height:30px; overflow:hidden; }
+#center .right_hot  dd{ padding-left:20px;}
+#center .right_hot  span{ position:absolute; color:#FFF; left:10px; display:block; width:16px; height:13px; text-align:center; line-height:13px; }
+#center .right_hot  span.digital1{ position:absolute;top:38px; background:url(../images/cityzixunlist/shu_bj.jpg) no-repeat; }
+#center .right_hot  span.digital2{ position:absolute;top:69px; background:url(../images/cityzixunlist/shu_bj.jpg) no-repeat;  }
+#center .right_hot  span.digital3{ position:absolute;top:102px; background:url(../images/cityzixunlist/shu_bj.jpg) no-repeat;  }
+#center .right_hot  span.digital4{ position:absolute;top:133px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat; color:#000;  }
+#center .right_hot  span.digital5{ position:absolute;top:165px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat; color:#000;  }
+#center .right_hot  span.digital6{ position:absolute;top:197px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat; color:#000;  }
+#center .right_hot  span.digital7{ position:absolute;top:230px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat;  color:#000; }
+#center .right_hot  span.digital8{ position:absolute;top:262px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat;  color:#000; }
+#center .right_hot  span.digital9{ position:absolute;top:293px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat; color:#000;  }
+#center .right_hot  span.digital10{ position:absolute;top:325px; background:url(../images/cityzixunlist/shu_bj1.jpg) no-repeat;color:#000;   }
+/*right_recommend*/
+#center .right_recommend{ width:331px; height:616px; border:solid #CCC 1px; margin-top:10px;}
+#center .right_recommend img{margin-top:10px; margin-left:10px; }
+#center .right_recommend h3{ margin-top:-17px; margin-left:25px;  }
+#center .right_recommend  .guanggao{ height:565px; width:304px; margin-top:15px; margin-left:15px;}
+
+/*footer底部*/
+
+#footer{ height:235px; width:1188px;display: block;  height: 0;  clear: both;  }
+#footer .cooperation a img{height:40px; width:123px; margin-left:10px; margin-right:10px;  }
+#footer .cooperation img.hezuo{padding-top:10px;}
+#footer a{ margin:0  10px;color:#000;}
+#footer p{ margin-top:21px; text-align:center;}
+#footer a:hover{ color:#999 }

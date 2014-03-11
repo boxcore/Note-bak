@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0; border:0;}
+body{font-size:12px;font-family:"宋体", Arial, Helvetica, sans-serif;}
+ul{list-style:none;}
+img{border:0;}
+a{text-decoration:none;}
+.clear{clear:both;height:0;font-size: 1px;line-height: 0px;}
+.floleft{float:left;}
+.floright{float:right;}
+input{font-family:"微软雅黑";}
+ 
+
+/*#center*/
+#center{ width:1188px; height: auto; margin-top:20px;}
+a{ color:#000;}
+a:hover{ color:#900;}
+.center_left{width:913px; height:auto;   float:left;  border:solid #d8d8d8 1px; margin-top:15px; position:relative;}
+.center_left h2{ text-align:center; color:#666; margin-top:10px; }
+.center_left .title{ height:38px; width:913px;}
+.center_left p.time{ text-align:center;  background: url(../images/featurarticle/cross_xian.gif)  center bottom no-repeat; bottom no-repeat; line-height:25px;}
+.center_left p.eat{ width:817px; height:100px; overflow:hidden; text-indent:25px; line-height:24px; margin-left:35px; margin-top:30px; overflow:hidden;}
+
+.center_left .article{ width:887px; height:288px;; margin-top:15px;   line-height:24px; font-size:14px;}
+.center_left .article .corss{ width:887px; height:284px; background:url(../images/featurarticle/cross.gif) no-repeat;line-height:41px;}
+.center_left .article .corss h3{ float:left; height:41px;  text-indent:15px; margin-left:20px;background:url(../images/featurarticle/corss_dian.gif) left center no-repeat; color:#003399;}
+.center_left .article .corss span{ float:right; }
+.center_left .article .corss span a{ color:#20376d; margin-right:18px;}
+.center_left .article .corss li{ float:left; border:solid #CCC 1px; width:130px; height:104px; margin:8px 6px; overflow:hidden;}
+.center_left .article .corss .guanggao{ clear:both;width:870px; height:240px; padding-top:10px; overflow:hidden; margin-left:25px;}
+.center_left .article .corss li img{ margin:14px; height:84px; width:104px; overflow:hidden;  }
+
+.center_left .article1{ width:887px; min-height:640px; margin-top:15px;   line-height:24px; font-size:14px; overflow:hidden;}
+.center_left .article1 .corss{ width:887px; height:744px; background:url(../images/featurarticle/cross.gif) no-repeat;line-height:41px;}
+.center_left .article1 .corss h3{ float:left; height:41px;  text-indent:15px; margin-left:20px;background:url(../images/featurarticle/corss_dian.gif) left center no-repeat; color:#003399;}
+.center_left .article1 .corss span{ float:right; }
+.center_left .article1 .corss span a{ color:#20376d; margin-right:18px;}
+.center_left .article1 .corss .guanggao{ background:url(../images/featurarticle/cross_xian.gif) bottom no-repeat; clear:both;width:673px; height:85px;  overflow:hidden; margin-left:25px; padding-top:30px;}
+.center_left .article1 .corss .guanggao h4{ font-size:16px; line-height:8px; margin-left:20px;}  
+.center_left .article1 .corss .guanggao p.wen{ width:629px; height:50px; overflow:hidden; line-height:25px; padding-top:5px; margin-left:20px; padding-top:10px;}   
+
+/*left_top*/
+.center_left .left_top{ width:786px;   height:150px; margin-left:30px;  margin-top:100px;text-indent:30px;overflow:hidden;}
+.center_left .left_top p{ font-size:14px; width:786px;   height:58px; overflow:hidden;}
+.center_left .left_top span{  font-size:18px; color:#F00; }
+.center_left .left_top img{ margin-left:10px;}
+
+/*.right*/
+#right{ width:250px; height:1000px; float:right; margin-top:15px;}
+#right  h3{ width:70px; height:31px; line-height:31px; margin-left:10px; color:#b86b25; }
+.right_hot{ height:386px; width:250px;  background: url(../images/featurarticle/right_bj.gif) no-repeat; }
+.right_hot ul{  width:232px; height:356px; overflow:hidden; margin-left:10px;}
+.right_hot li{ line-height:30px; width:232px; height:30px; overflow:hidden; background:url(../images/featurarticle/right_dian.gif) left center no-repeat; text-indent:10px;}
+
+.right_hot1{ height:386px; width:250px;  background: url(../images/featurarticle/right_bj.gif) no-repeat; margin-top:20px; }
+.right_hot1 ul{  width:232px; height:356px; overflow:hidden; margin-left:10px;}
+.right_hot1 li{ line-height:30px; width:232px; height:30px; overflow:hidden; background:url(../images/featurarticle/right_dian.gif) left center no-repeat; text-indent:10px;}
+
+/*.adver广告位*/
+.adver{ width:250px; height:416px; overflow:hidden; margin-top:20px; clear:both; }
+ 
+ 
+

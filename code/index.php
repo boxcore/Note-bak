@@ -26,9 +26,10 @@ $i = 0;
 @$tot = count($link_list);
 ?>
     <?php if(isset($link_list)) { ?>
+        <div class="row">
         <?php foreach($link_list as $v){ ?>
-        <?php if( $i%6 == 0){ ?><div class="row"><?php } ?>
-            <div class="col-sm-3 col-md-2 ">
+
+            <div class="col-sm-4 col-md-2 ">
                 <div class="thumbnail">
 <!--                    <a href="--><?php //echo $v['link_url']; ?><!--" title="" target="_blank"><img class="lazy" src="assets/img/headroom.png" width="300" height="150" data-src="--><?php //echo $v['link_img']; ?><!--"></a>-->
                     <div class="caption">
@@ -39,13 +40,16 @@ $i = 0;
                     </div>
                 </div>
             </div>
-        <?php if( $i%6 == 0){ ?></div><?php } ?>
-        <?php } ?>
-    <?php $i++; } ?>
+<?php if($i && ($i%6 === 0) ){ ?></div><div class="row"><?php } ?>
+        <?php $i++; } ?>
+        </div>
+    <?php  } ?>
 
         <hr/>
         <h1>目录浏览：</h1>
+        <div class="row">
         <iframe src="scan_dir.php" frameborder="0" width="600" height="500"></iframe>
+            </div>
 
     <div id="footer">
         

@@ -1,0 +1,439 @@
+define("dist/index/index", ["dist/lib/chkLogin/chkLogin", "dist/lib/searchToolBar/searchToolBar", "dist/lib/imgBoxFocus/imgBoxFocus", "dist/lib/hoverPop/hoverPop", "dist/lib/tab/tab", "dist/lib/indexFocus/indexFocus", "dist/lib/scrollPic/scrollPic", "dist/lib/litTool/litTool", "dist/lib/adCode/adCode"],
+function (t) {
+    var i = t("dist/lib/chkLogin/chkLogin"),
+	o = t("dist/lib/searchToolBar/searchToolBar"),
+	
+	a = t("dist/lib/imgBoxFocus/imgBoxFocus"),
+	s = t("dist/lib/hoverPop/hoverPop"),
+	n = t("dist/lib/tab/tab");
+    t("dist/lib/indexFocus/indexFocus"),
+	t("dist/lib/scrollPic/scrollPic");
+	r = t("dist/lib/litTool/litTool");
+    r.litTool(),
+	i.chkLogin(),
+	o.searchToolBar(),
+	$(".scrollLoading").scrollLoading(),
+	$("#indexFocus").indexFocus({
+	    autoStart: !0,
+	    showBtnImg: !0,
+	    showScrollBtn: !0
+	}),
+	t.async("http://himg2.huanqiu.com/statics/js/cron/jieri.js?random=" + Math.random() + "#",
+	function () {
+	    var t = "";
+	    if ("" != festivalData.to) t += '<span class="to">' + festivalData.to + '<em><a href="' + festivalData.festival.url + '" class="name">' + festivalData.festival.festivalName + "</a></em></span>";
+	    else {
+	        for (var i = "",
+			o = 0; festivalData.festival.length > o; o++) i += '<li><a href="' + festivalData.festival[o].url + '" class="name">' + festivalData.festival[o].festivalName + "</a></li>";
+	        t += '<span class="today"><a class="arrBlue" target="_self" href="javascript:void(0)"></a><div class="topFestival" id="topFestival"><ul>' + i + "</ul></div></span>"
+	    }
+	  
+		
+	}),
+	$(".newsSearch li").on("mouseenter mouseleave",
+	function (t) {
+	    var i = $(this);
+	    "mouseenter" == t.type ? 1 == i.index() ? i.find(".colorBoxCon").stop(!0, !1).animate({
+	        marginTop: "-60px"
+	    },
+		300,
+		function () {
+		    i.find(".colorBoxBlack").show()
+		}) : i.find(".colorBoxCon").stop(!0, !1).animate({
+		    marginLeft: "-120px"
+		},
+		300,
+		function () {
+		    i.find(".colorBoxBlack").show()
+		}) : 1 == i.index() ? i.find(".colorBoxCon").stop(!0, !1).animate({
+		    marginTop: "0px"
+		},
+		300,
+		function () {
+		    i.find(".colorBoxBlack").hide()
+		}) : i.find(".colorBoxCon").stop(!0, !1).animate({
+		    marginLeft: "0px"
+		},
+		300,
+		function () {
+		    i.find(".colorBoxBlack").hide()
+		})
+	}),
+	$("#focus_junshi").indexFocus(),
+	$("#focus_china").indexFocus(),
+	$("#focus_taiwan").indexFocus(),
+	$("#focus_tech").indexFocus(),
+	$("#focus_travel").indexFocus(),
+	$("#focus_health").indexFocus(),
+	$("#focus_sport").indexFocus(),
+	$("#focus_ent").indexFocus(),
+	$("#focus_fashion").indexFocus(),
+	s.hoverPop(".arrPad", "arrShow"),
+	s.hoverPop(".dailyPic li", "cur", "false"),
+	s.hoverPop(".monthPic li", "cur", "false"),
+	$("#showPicList01").scrollPic({
+	    scrollWidth: 318
+	}),
+	$("#showPicList02").scrollPic({
+	    scrollWidth: 318
+	}),
+	a.imgBoxFocus(),
+	t.async("http://comment1.huanqiu.com/rank/detail_rpph.js",
+	function () {
+	    for (var t = $.parseJSON(json), i = "", o = "", e = 0; t.length > e; e++) o = 0 == e ? "blueBox" : 1 == e ? "blueBoxMid" : 2 == e ? "blueBoxLight" : "",
+		i += '<li><a title="' + t[e].title + '" href="' + t[e].url + '"><em class="' + o + '">' + (e + 1) + "</em><i>" + t[e].title + "</i></a></li>";
+	    $("#ranklingList").html(i)
+	}),
+	n.tab({
+	    elm: "#showTab"
+	}),
+	$(".ui-tabItem li").bind("mouseenter mouseleave",
+	function (t) {
+	    var i = $(this);
+	    "mouseenter" == t.type ? i.find(".txt").stop(!0, !1).animate({
+	        left: 0
+	    }) : i.find(".txt").stop(!0, !1).animate({
+	        left: "-999px"
+	    })
+	})
+}),
+define("dist/lib/chkLogin/chkLogin", [],
+function (t, i, o) {
+    o.exports = {
+        chkLogin: function () {
+            if ($.cookie("user[username]")) {
+                var t = "",
+				i = $.cookie("user[pm]"),
+				o = $.cookie("user[username]"),
+				e = $.cookie("user[avatar]");
+                0 == i ? t += '<a href="http://passport.huanqiu.com/pm.php?a=pmlist" class="logMail"></a>' : (i > 99 && (i = "99+"), t += '<a href="http://passport.huanqiu.com/pm.php?a=pmlist" class="logMailNum"><strong>' + i + "</strong></a>"),
+				$("#ui-login").html('<a target="_self" href="http://passport.huanqiu.com/user.php?a=loginout">退出</a>' + t + '<i><img src="' + e + '">' + o + "</i><em>欢迎你</em>")
+            } else $("#ui-login").html('<a target="_self" href="http://passport.huanqiu.com/user.php?a=login" class="linkLogin">登录</a><a target="_blank" href="http://passport.huanqiu.com/user.php?a=register">注册</a>')
+        }
+    }
+}),
+define("dist/lib/searchToolBar/searchToolBar", [],
+function (t, i, o) {
+    o.exports = {
+        searchToolBar: function () {
+            t.async("http://himg2.huanqiu.com/statics/js/defaultkeyword.js",
+			function () {
+			    var t = $("#ui-topSearch #ui-topSearchKeyWord");
+			    $("#ui-topSearch");
+			    var i = "http://s.huanqiu.com/s/";
+			    "undefined" == typeof defaultKeyWords || "" == defaultKeyWords ? (defaultKeyWords = "请输入搜索关键字", t.val("请输入搜索关键字")) : t.val(defaultKeyWords),
+				t.on("focus blur",
+				function (t) {
+				    "focus" == t.type ? $(this).val() == defaultKeyWords && $(this).val("") : "" == $.trim($(this).val()) && $(this).val(defaultKeyWords)
+				}),
+				$("#ui-topSearch #ui-topSearchBtn").on("click",
+				function () {
+				    var o = t.val();
+				    o = encodeURIComponent(o),
+					$("#ui-topSearch").attr("action", "" + i).submit()
+				}),
+				$("#ui-topSearchKeyWord").on("keydown",
+				function (t) {
+				    13 == t.keyCode && $("#ui-topSearch #ui-topSearchBtn").click()
+				})
+			})
+        }
+    }
+}),
+
+define("dist/lib/imgBoxFocus/imgBoxFocus", [],
+function (t, i, o) {
+    o.exports = {
+        imgBoxFocus: function () {
+            $(".ui-imgBoxList").bind("mouseover",
+			function () {
+			    var t = $(this).position(),
+				i = $(this),
+				o = i.find("a").attr("href"),
+				e = i.find("a").attr("data-txt"),
+				a = i.find("a").attr("data-hotNum");
+			    "true" !== i.siblings(".ui-imgBoxFocus").attr("data-switch") && (i.siblings(".ui-imgBoxFocus").attr("data-switch", "true"), i.siblings(".ui-imgBoxFocus").css({
+			        width: "100%",
+			        height: $(window).height(),
+			        left: "0px",
+			        top: "0px",
+			        display: "block"
+			    })),
+				i.siblings(".ui-imgBoxFocus").attr("href", o).stop(!1, !1).animate({
+				    left: t.left + 0,
+				    top: t.top + 0,
+				    width: i.width(),
+				    height: i.height()
+				},
+				250),
+				i.siblings(".ui-imgBoxFocus").find(".ui-imgBoxBg").css({
+				    opacity: "0.7",
+				    width: i.width(),
+				    height: i.height()
+				}),
+				i.siblings(".ui-imgBoxFocus").find("p").text(e),
+				i.siblings(".ui-imgBoxFocus").find("em").text(a)
+			})
+        }
+    }
+}),
+define("dist/lib/hoverPop/hoverPop", [],
+function (t, i, o) {
+    o.exports = {
+        hoverPop: function (t, i, o) {
+            o = o || !0,
+			$("body").delegate(t, "mouseover mouseout",
+			function (t) {
+			    var e = $(this);
+			    "mouseover" == t.type ? (e.find("img").each(function () {
+			        $(this).attr("data-url") && $(this).attr("src", $(this).attr("data-url"))
+			    }), e.addClass(i).siblings().removeClass(i)) : 1 == o && e.removeClass(i)
+			})
+        }
+    }
+}),
+define("dist/lib/tab/tab", [],
+function (t, i, o) {
+    o.exports = {
+        tab: function (t) {
+            var t = t || {},
+			i = t.elm,
+			o = t.className || "cur",
+			e = t.eventType || "mouseover",
+			a = $(i).find(".ui-tabMenu"),
+			s = $(i).find(".ui-tabItem");
+            a.each(function () {
+                var t = $(this),
+				i = t.index();
+                t.bind(e,
+				function () {
+				    t.addClass(o).siblings().removeClass(o),
+					s.eq(i).show().siblings(".ui-tabItem").hide(),
+					s.find("img").each(function () {
+					    $(this).attr("data-url") && $(this).attr("src", $(this).attr("data-url"))
+					})
+				})
+            })
+        }
+    }
+}),
+define("dist/lib/indexFocus/indexFocus", [],
+function () {
+    (function (t) {
+        t.indexFocus = function (i, o) {
+            var e, a = 0,
+			s = this,
+			n = t(i).find("li").eq(0).width(),
+			c = t(i).find("li").eq(0).height(),
+			r = t(i).find("li").length;
+            s.opts = t.extend({},
+			t.indexFocus.defaults, o),
+			s.init = function () {
+			    if (s.focusUl = t(i).find("ul"), s.focusLi = t(i).find("li"), s.focusUl.width(n * r), s.opts.autoStart && s.startFocus(a), s.opts.showNum) {
+			        var o = "";
+			        o += '<div class="indexFocusNum">';
+			        for (var c = 0; r > c; c++) o += 0 == c ? '<a href="javascript:void(0)" target="_self" class="ui-ifNumBtn hover">' + (c + 1) + "</a>" : '<a href="javascript:void(0)" class="ui-ifNumBtn" target="_self">' + (c + 1) + "</a>";
+			        o += "</div>",
+					t(i).append(o),
+					t(i).delegate(".indexFocusNum a.ui-ifNumBtn", "mouseenter mouseleave",
+					function (i) {
+					    a = t(this).index(),
+						"mouseenter" == i.type && (clearTimeout(s.timeout), s.curImg(), s.moveFocus())
+					})
+			    }
+			    if (s.opts.showBtn) {
+			        var l = nextImg = "";
+			        if (s.opts.showBtnImg) {
+			            var u = s.focusLi.find("img").eq(r - 1).attr("data-url"),
+						d = s.focusLi.find("img").eq(a + 1).attr("data-url");
+			            l = '<img class="ui-prevImg" width="100" height="80" src="' + u + '" />',
+						nextImg = '<img class="ui-nextImg" width="100" height="80" src="' + d + '" />'
+			        }
+			        var p = '<div class="ui-ifPrevWrap"><a href="javascript:void(0)" class="ui-ifPrevBtn" target="_self">向上</a>' + l + '</div><div class="ui-ifNextWrap"><a href="javascript:void(0)" class="ui-ifNextBtn" target="_self">向下</a>' + nextImg + "</div>";
+			        t(i).append(p);
+			        var h = t(i).find(".ui-ifPrevWrap"),
+					m = t(i).find(".ui-ifNextWrap");
+			        h.on("click mouseenter mouseleave",
+					function (i) {
+					    "click" == i.type ? (a--, 0 > a && (a = r - 1), s.opts.showBtnImg && s.curImg(), s.goPlayFocus(a)) : "mouseenter" == i.type ? (clearTimeout(s.timeout), t(this).addClass("cur"), s.moveFocus()) : t(this).removeClass("cur")
+					}),
+					m.on("click mouseenter mouseleave",
+					function (i) {
+					    "click" == i.type ? (a++, a == r && (a = 0), s.opts.showBtnImg && s.curImg(), s.goPlayFocus(a)) : "mouseenter" == i.type ? (clearTimeout(s.timeout), t(this).addClass("cur"), s.moveFocus()) : t(this).removeClass("cur")
+					})
+			    }
+			    s.focusLi.find("img").eq(0).load(function () {
+			        t(i).show()
+			    }),
+				t(i).on("mouseenter mouseleave",
+				function (t) {
+				    "mouseenter" == t.type ? (s.opts.showScrollBtn || (h.show(), m.show()), s.opts.autoStart && clearInterval(e)) : (s.opts.showScrollBtn || (h.hide(), m.hide()), s.startFocus(a))
+				})
+			},
+			s.curImg = function () {
+			    var o = s.focusLi.find("img").eq(a - 1).attr("data-url"),
+				e = s.focusLi.find("img").eq(a == r - 1 ? 0 : a + 1).attr("data-url");
+			    t(i).find(".ui-prevImg").attr("src", o),
+				t(i).find(".ui-nextImg").attr("src", e)
+			},
+			s.moveFocus = function () {
+			    s.timeout = setTimeout(function () {
+			        t(s.$numLi).addClass("hover").siblings().removeClass("hover"),
+					s.goPlayFocus(a)
+			    },
+				s.opts.intevalTime)
+			},
+			s.PlayFocus = function () {
+			    r - 1 >= a && a++,
+				a = a > r - 1 ? 0 : a,
+				s.opts.showBtnImg && s.curImg(),
+				s.goPlayFocus(a)
+			},
+			s.goPlayFocus = function (o) {
+			    s.focusNum = t(i).find("a.ui-ifNumBtn"),
+				s.focusNum.eq(o).addClass("hover").siblings().removeClass("hover");
+			    var e = s.focusLi.eq(o).find("img").attr("data-url");
+			    s.focusLi.eq(o).find("img").attr("src", e),
+				"left" == s.opts.switchPath ? (s.focusLi.css({
+				    "float": "left"
+				}), s.focusUl.css({
+				    width: r * n
+				}), o = -(o * n) + "px", s.focusUl.stop(), s.focusUl.stop(!0, !1).animate({
+				    left: o
+				},
+				s.opts.switchTime)) : "up" == s.opts.switchPath && (o = -(o * c) + "px", s.focusUl.stop(), s.focusUl.stop(!0, !1).animate({
+				    top: o
+				},
+				s.opts.switchTime))
+			},
+			s.startFocus = function () {
+			    s.opts.autoStart && (e = setInterval(s.PlayFocus, s.opts.time))
+			},
+			s.init()
+        },
+		t.indexFocus.defaults = {
+		    autoStart: !1,
+		    switchPath: "left",
+		    showBtn: !0,
+		    showBtnImg: !1,
+		    showScrollBtn: !1,
+		    showTxt: !0,
+		    showNum: !0,
+		    time: 5e3,
+		    switchTime: 500,
+		    intevalTime: 200
+		},
+		t.fn.indexFocus = function (i) {
+		    return this.each(function () {
+		        new t.indexFocus(this, i)
+		    })
+		}
+    })(jQuery)
+}),
+define("dist/lib/scrollPic/scrollPic", [],
+function () {
+    (function (t) {
+        t.scrollPic = function (i, o) {
+            var e = 1,
+			a = this;
+            a.elm = i,
+			a.$elm = t(i),
+			a.opts = t.extend({},
+			t.scrollPic.defaults, o);
+            var s = a.$elm.find(".ui-scrollPic-con-item").length;
+            a.$elm.find(".ui-scrollPic-con-item");
+            var n = a.$elm.find(".ui-scrollPic-con"),
+			c = a.$elm.find(".scrollPrevBtn"),
+			r = a.$elm.find(".scrollNextBtn");
+            a.init = function () {
+                a.opts.autoStart && a.startscrollPic(e),
+				a.$elm.find(".ui-scrollPic-con-item").css({
+				    width: a.opts.scrollWidth,
+				    "float": "left"
+				}),
+				n.width(a.opts.scrollWidth * s),
+				c.addClass("pagePrevEnd"),
+				s > 1 && r.addClass("arrRightCur"),
+				r.on("click",
+				function () {
+				    s > e && (n.animate({
+				        marginLeft: "-" + a.opts.scrollWidth * e + "px"
+				    },
+					200), a.$elm.find(".ui-scrollPic-paginList a.btn").eq(e).addClass("cur").siblings().removeClass("cur"), e++, s > e && 1 != e ? (r.addClass("arrRightCur"), c.addClass("arrLeftCur pagePrev").removeClass("pagePrevEnd")) : e == s && (r.removeClass("arrRightCur pageNext").addClass("pageNextEnd"), c.addClass("arrLeftCur")))
+				}),
+				c.on("click",
+				function () {
+				    e > 0 && (e--, n.animate({
+				        marginLeft: "-" + a.opts.scrollWidth * (e - 1) + "px"
+				    },
+					200), a.$elm.find(".ui-scrollPic-paginList a.btn").eq(e - 1).addClass("cur").siblings().removeClass("cur"), 0 == e && (e = 1, a.$elm.find(".ui-scrollPic-paginList a.btn").eq(0).addClass("cur").siblings().removeClass("cur"), c.addClass("pagePrevEnd")), e > 1 ? (r.addClass("arrRightCur").removeClass("pageNextEnd"), c.addClass("arrLeftCur")) : 1 == e && (c.removeClass("arrLeftCur pagePrev").addClass("pagePrevEnd"), r.removeClass("pageNextEnd").addClass("pageNext arrRightCur")))
+				}),
+				1 == s && (r.hide(), c.hide())
+            },
+			a.PlayFocus = function () {
+			    e = e > s - 1 ? 0 : e,
+				a.goPlayFocus(e)
+			},
+			a.startscrollPic = function () {
+			    a.opts.autoStart && (a.picInterval = setInterval(a.PlayFocus, a.opts.time))
+			},
+			a.goPlayFocus = function () {
+			    r.trigger("click")
+			},
+			a.init()
+        },
+		t.scrollPic.defaults = {
+		    scrollWidth: 960,
+		    autoStart: !1,
+		    wrapItemsHeight: 0,
+		    time: 5e3
+		},
+		t.fn.scrollPic = function (i) {
+		    return this.each(function () {
+		        new t.scrollPic(this, i)
+		    })
+		}
+    })(jQuery)
+}),
+
+define("dist/lib/litTool/litTool", [],
+function (t, i, o) {
+    o.exports = {
+        litTool: function () {
+            var t = $("#ui-setIndex"),
+			i = $("#ui-markIndex");
+            t.on("click",
+			function () {
+			    try {
+			        oIndex.css("behavior", "url(#default#homepage)"),
+					oIndex[0].setHomePage("http://www.huanqiu.com/")
+			    } catch (t) {
+			        if (window.netscape) try {
+			            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect")
+			        } catch (t) {
+			            alert("抱歉，此操作被浏览器拒绝！\n\n请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'")
+			        } else alert("抱歉，您所使用的浏览器无法完成此操作。\n\n您需要手动将'http://www.huanqiu.com/'设置为首页。")
+			    }
+			}),
+			i.on("click",
+			function () {
+			    var t = $("title").text();
+			    if (window.sidebar) window.sidebar.addPanel(t, "http://www.huanqiu.com", "");
+			    else if (document.all) window.external.AddFavorite("http://www.huanqiu.com", t);
+			    else if (window.opera && window.print) return !0
+			})
+        }
+    }
+}),
+define("dist/lib/adCode/adCode", [],
+function () {
+    function t(t) {
+        return "string" == typeof t ? document.getElementById(t) : t
+    }
+    function i(i) {
+        var o = t(i),
+		e = t(i + "_con");
+        o && e && (o.innerHTML = e.innerHTML, e.innerHTML = "")
+    }
+    for (var o = ["adDt", "adBa_1", "adBa_2", "adBa_3", "adBa_4", "adFm_1", "adFm_2", "adFm_3", "adFm_4", "adFm_5", "adSba_1", "adSba_2", "adSba_3", "adSba_4", "adPp", "adPt", "adTe", "adBtn_1", "adBtn_2", "adBtn_3", "adAe", "adUn_1", "adUn_2", "adUn_3", "adSba_daily", "adBtn_daily", "adFm_daily", "moTu"], e = o.length, a = 0; e > a; a++) i(o[a], a)
+});

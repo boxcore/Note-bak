@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0; border:0;}
+body{font-size:12px;font-family:"宋体", Arial, Helvetica, sans-serif;}
+ul{list-style:none;}
+img{border:0;}
+a{text-decoration:none;}
+.clear{clear:both;height:0;font-size: 1px;line-height: 0px;}
+.floleft{float:left;}
+.floright{float:right;}
+input{font-family:"微软雅黑";}
+ 
+
+/*#center*/
+#center{ width:1188px; height: auto; margin-top:20px;}
+a{ color:#000;}
+a:hover{ color:#900;}
+.center_left{width:913px; height:auto;   float:left;  border:solid #d8d8d8 1px; margin-top:15px; position:relative;}
+.center_left h2{ text-align:center; color:#666; margin-top:10px; }
+.center_left .title{ height:38px; width:913px; background:url(../images/cityarticle/left_xian.jpg)  bottom no-repeat;}
+.center_left p.time{ text-align:center; margin-top:5px;}
+.center_left .article{ width:867px; height: auto; margin-top:15px; margin-left:19px; line-height:24px; font-size:14px;}
+ .center_left  img{ margin-top:10px;}
+.center_left .wn_img{width:351px; height:253px;}
+.center_left .message{ height:120px; width:856px; margin-top:25px; margin-left:20px;  }
+.center_left .message a{ margin-left:10px; margin-top:10px;}
+.message_ms{ width:168px; height:51px;  background:url(../images/cityarticle/message.jpg) no-repeat;    margin-left:680px; font-size:30px; margin-top:-40px;  line-height:51px; text-align:center;  }
+.message_ms a{    color:#FFF; }
+.share{ padding-top:10px;}
+.message_ms  a:hover{ color:#CCC; }
+.message p{ margin-top:20px; margin-left:20px;}
+/* message_board*/
+.message_board{ width:486px; height:458px; margin:0 auto;}
+.message_board .an1 {background: url(/static/img/gb/master/0.1/guestbook_right_input.png) left top repeat-x;border: 1px solid #B9B9B9;height: 25px;line-height: 25px;margin: 0;padding: 0 3px;width: 202px;}
+.message_board ul li {clear: both;padding:18px 0px 4px; width:450px; }
+.message_board em{ color:#F00; }
+.message_board span{ margin-left:5px;}
+font{ margin-left:10px;}
+li.guestbook_comments {width: 234px;height: 110px;}
+.form_textarea_2{height:151px;border: 1px #B9B9B9 solid;width: 234px;padding:3px;resize: none;max-width: 234px;max-height: 151px; }
+.message_board .guestbook_comments .form_textarea_2 {color: #999;}
+.guestbook_comments label {display: inline;float: left;font-size: 14px;height: 24px;line-height: 24px;text-align: left;width: 44px;overflow: hidden;}
+.message_board .guestbook_comments .form_textarea_2,   .guestbook_comments .form_textarea {
+border: 1px #B9B9B9 solid;width: 202px;padding: 3px;height: 109px;font-size: 12px; }
+textarea {overflow: auto;}
+user agent stylesheettextarea {font-family: monospace;}
+user agent stylesheettextarea {-webkit-appearance: textarea;background-color: white;border: 1px solid;
+border-image: initial;-webkit-rtl-ordering: logical;-webkit-user-select: text;-webkit-box-orient: vertical;resize: auto;cursor: auto;padding: 2px;white-space: pre-wrap;word-wrap: break-word;}
+user agent stylesheetinput, textarea, keygen, select, button, isindex {margin: 0em;font: -webkit-small-control;color: initial;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;text-indent: 0px;text-shadow: none;display: inline-block;text-align: -webkit-auto;}
+.guestbook_txt {background: #F6F6F6;border: 1px #BABABA dashed; height:113px;width: 200px; overflow: hidden; margin-top:-175px; margin-left:270px; padding-top:5px; padding-left:5px; line-height:23px;}
+.hide {display: none;}
+.submit_btn{ text-align:center; background:url(../images/cityarticle/submit.jpg) no-repeat;  width:158px; height:39px; color:#FFF; font-size:14px; font-weight:bold; margin-left:170px;   }
+
+/*left_top*/
+.center_left .left_top{ width:786px;   height:150px; margin-left:30px;  margin-top:10px;text-indent:30px;overflow:hidden;}
+.center_left .left_top p{ font-size:14px; width:786px;   height:58px; overflow:hidden;}
+.center_left .left_top span{  font-size:18px; color:#F00; }
+.center_left .left_top img{ margin-left:10px;}
+/*.right*/
+#right{ width:260px; height:1323px; float:right; margin-top:15px;}
+#right .right_project{ width:260px; height:268px; background:url(../images/cityarticle/right_bj.jpg) no-repeat;}
+#right .right_project .project_wn{  height:237px; width:260px; margin-left:5px;}
+#right    h3{ width:70px; height:31px; line-height:31px; margin-left:10px; color:#b86b25; }
+#right .right_project dt{ background:url(../images/cityarticle/shu_bj.jpg) 0 50%  no-repeat; width:200px; height:30px;  float:left; line-height:30px;   overflow:hidden;  }
+#right .right_project dt  span{ padding-left:4px; color:#FFF;}
+#right .right_project dt a{ margin-left:15px;}
+#right .right_project dd{float:right;font-size:12px; width:45px; color:#666; padding-top:8px; }
+
+.right_hot{ height:347px; width:260px; margin-top:10px; background:url(../images/cityarticle/right_hot.jpg) no-repeat;}
+.right_hot ul{  width:232px; height:293px; overflow:hidden; margin-left:15px;}
+.right_hot li{ line-height:30px; width:232px; height:30px; overflow:hidden;}
+.adver{ width:260px; height:416px; overflow:hidden; margin-top:10px; clear:both; }
+ 
+ 
+
