@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function strLen(str){
+       var len = 0;
+       for(i=0;i<str.length;i++)
+       {
+        if(str.charCodeAt(i)>256)
+        {
+         len += 2;
+        }
+        else
+        {
+         len++;
+        }
+       }
+       return len;
+    }
+
+    var num = '15800202100';
+    var str = '我的未来bsm';
+    var length = str.replace(/[^\x00-\xff]/g,"**").length;
+    console.log('leth:'+length); 
+    console.log(strLen(num));
+    console.log(strLen("我的aaa"));
+    console.log(str.length);
+
+    </script>
+</body>
+</html>

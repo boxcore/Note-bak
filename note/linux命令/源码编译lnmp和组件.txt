@@ -1,0 +1,148 @@
+// lnmp源码编译过程
+lib组件也用编译安装
+
+一、安装组件
+
+1.1 安装libxml2
+yum  install  -y  libxml2-devel	// 如果报错，安装此包后再尝试安装
+---
+make过程中报错：
+--------------------------------------------------------------------------------
+libxml.c:3821: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'libxmlMethods'
+libxml.c:3876: warning: ISO C does not allow extra ';' outside of a function
+libxml.c: In function 'initlibxml2mod':
+libxml.c:3908: error: 'PyObject' undeclared (first use in this function)
+libxml.c:3908: error: 'module' undeclared (first use in this function)
+libxml.c:3914: warning: implicit declaration of function 'Py_InitModule'
+libxml.c:3914: warning: nested extern declaration of 'Py_InitModule'
+libxml.c:3914: error: 'libxmlMethods' undeclared (first use in this function)
+make[4]: *** [libxml.lo] Error 1
+make[4]: Leaving directory `/root/src/libxml2-2.9.1/python'
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory `/root/src/libxml2-2.9.1/python'
+make[2]: *** [all] Error 2
+make[2]: Leaving directory `/root/src/libxml2-2.9.1/python'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/root/src/libxml2-2.9.1'
+make: *** [all] Error 2
+--------------------------------------------------------------------------------
+
+解决方法： yum -y install python-devel
+	参考了：http://www.devsumo.com/technotes/2013/12/linux-building-libxml2-on-red-hat-enterprise-linux/
+	
+如此一来完整安装命令为：
+yum  install  -y  libxml2-devel python-devel
+./configure --prefix=/usr/local/libxml2
+make && make install
+
+1.2 安装libmcrypt
+libmcrypt是加密算法扩展库。支持DES, 3DES, RIJNDAEL, Twofish, IDEA, GOST, CAST-256, ARCFOUR, SERPENT, SAFER+等算法。
+
+ cd /lamp/libmcrypt-2.5.8
+ ./configure --prefix=/usr/local/libmcrypt
+ make && make install
+ 
+1.2.1 安装libltdl，也在libmcrypt源码目录中，非新软件  是libmcrypt的子软件
+ cd /lamp/libmcrypt-2.5.8/libltdl
+ ./configure --enable-ltdl-install
+ make
+ make install
+
+ 
+1.3 安装zlib
+zlib是提供数据压缩用的函式库，由Jean-loup Gailly与Mark Adler所开发，初版0.9版在1995年5月1日发表。zlib使用DEFLATE算法，最初是为libpng函式库所写的，后来普遍为许多软件所使用。此函式库为自由软件，使用zlib授权
+cd /lamp/zlib-1.2.3
+./configure --prefix=/usr/local/zlib
+make
+make install  >>  /root/zlib.log
+* zlib指定安装目录可能造成libpng安装失败，故不指定，为卸载方便，建议make install执行结果输出到安装日志文件，便于日后卸载
+
+1.4 安装libpng
+libpng 软件包包含 libpng 库.这些库被其他程式用于解码png图片
+ cd /lamp/libpng-1.2.31
+ ./configure --prefix=/usr/local/libpng/
+ make
+ make install
+
+ 
+1.5 安装jpegsrc
+用于解码.jpg和.jpeg图片
+
+# tar zxvf jpegsrc.v9a.tar.gz -C /usr/local/src/
+# cd /usr/local/src/jpeg-9a/
+# mkdir -pv /usr/local/libjpeg/{,bin,lib,include,man/man1,man1}
+上面的命令是要手动创建一些目录，否则configure时候会说找不到目录
+# ./configure --prefix=/usr/local/libjpeg --enable-shared --enable-static
+注意，这里configure一定要带--enable-shared参数，不然，不会生成共享库
+# make ; make install
+
+1.6 安装freetype
+FreeType库是一个完全免费(开源)的、高质量的且可移植的字体引擎，它提供统一的接口来访问多种字体格式文件，包括TrueType, OpenType, Type1, CID, CFF, Windows FON/FNT, X11 PCF等。支持单色位图、反走样位图的渲染。FreeType库是高度模块化的程序库，虽然它是使用ANSI C开发，但是采用面向对象的思想，因此，FreeType的用户可以灵活地对它进行裁剪。
+
+ cd /lamp/freetype-2.3.5
+ ./configure --prefix=/usr/local/freetype/
+ make
+ make install
+
+cd /lamp/freetype-2.3.5 && ./configure --prefix=/usr/local/freetype/ && make && make install
+
+
+1.7 安装autoconf
+Autoconf是一个用于生成可以自动地配置软件源代码包以适应多种Unix类系统的 shell脚本的工具
+ cd /lamp/autoconf-2.61
+ ./configure
+ make 
+ make install
+
+组合语句：
+cd /lamp/autoconf-2.61 && ./configure --prefix=/usr/local/autoconf && make && make install
+
+
+1.8 .Fontconfig (可以不装的)
+# tar zxvf fontconfig-2.4.2.tar.gz -C /usr/local/src/
+# cd /usr/local/src/fontconfig-2.4.2/
+# ./configure --prefix=/usr/local/fontconfig --with-freetype-config=/usr/local/freetype/bin/freetype-config
+如果报错：
+ checking for LIBXML2... configure: error: Package requirements (libxml-2.0 >= 2.6) were not met:
+No package 'libxml-2.0' found
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+Alternatively, you may set the environment variables LIBXML2_CFLAGS
+and LIBXML2_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+ 
+但是我们在上面其实已经安装上 libxml2 了的，这里只是一个环境变量没有设置好而已。
+解决办法： 确定 /usr/local/libxml2/lib/pkgconfig 目录下有 libxml-2.0.pc
+export PKG_CONFIG_PATH=/usr/local/libxml2/lib/pkgconfig:$PKG_CONFIG_PATH
+记住在export前面无需要有sudo,这样子就会通过了。
+然后在进行下面的操作的时候，也不要加sudo执行
+./configure --prefix=/usr/local/fontconfig --with-freetype-config=/usr/local/freetype/bin/freetype-config
+再次生成 makefile , 这样就成功了。
+# make ; make install
+
+
+1.9 安装GD库
+GD库，是php处理图形的扩展库，GD库提供了一系列用来处理图片的API，使用GD库可以处理图片，或者生成图片。 在网站上GD库通常用来生成缩略图，或者用来对图片加水印，或者用来生成汉字验证码，或者对网站数据生成报表等。
+
+# tar zxvf gd-2.0.35.tar.gz -C /usr/local/src/
+# cd /usr/local/src/gd-2.0.35/
+# vi gd_png.c
+----------
+把 #include “png.h” 替换为 #include "/usr/local/libpng/include/png.h"
+----------
+# ./configure --prefix=/usr/local/libgd --with-png=/usr/local/libpng --with-freetype=/usr/local/freetype --with-jpeg=/usr/local/libjpeg --with-fontconfig=/usr/local/fontconfig
+
+
+如果不修改，指定“png.h”，则会出现下面报错： 
+make出错：
+make[2]: *** [gd_png.lo] Error 1
+make[2]: Leaving directory `/lamp/gd-2.0.35'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/lamp/gd-2.0.35'
+make: *** [all] Error 2
+
+ * 若前面配置zlib时没有指定安装目录，gd配置时不要添加--with-zlib=/usr/local/zlib/参数
+
+
+二、 安装nginx

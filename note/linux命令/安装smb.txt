@@ -4,6 +4,7 @@ yum -y install samba
 rpm -qa | grep samba
 whereis samba 
 
+chkconfig smb on
 
 vi /etc/samba/smb.conf
 

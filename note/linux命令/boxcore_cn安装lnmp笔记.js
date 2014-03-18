@@ -29,6 +29,8 @@ zlib-devel
 
 // 组装好是这样的：
 # yum install -y  apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++ freetype gd glibc jpegsrc krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
+
+# yum install -y  apr* autoconf automake bison compat* cpp curl curl-devel cloog-ppl gcc gcc-c++  krb5-devel kernel kernel-headers keyutils keyutils-libs-devel libcom_err-devel libgomp libiconv libjpeg* libmcrypt libmcrypt-devel  libpng* libsepol-devel libselinux-devel libtool* libxml2 libxml2-devel libXpm* libstdc++-devel make mhash mpfr ncurses* openssl openssl-devel patch pcre-devel  perl php-gd php-common ppl zlib-devel
 // 说明，yum安装libmcrypt libmcrypt-devel 这两个包后安装php时会找不到目录，【待解决】
 # yum clean all
 
