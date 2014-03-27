@@ -1,4 +1,4 @@
-
+08:00:27:5F:CE:9D 
 ++++++++++++++++++++++++
 一、linux 网卡网络设置
 ++++++++++++++++++++++++
@@ -91,7 +91,7 @@ BOOTPROTO=none
 3、我的局域网设置：
 ========================================
 DEVICE=eth0
-HWADDR=08:00:27:C8:51:7A
+HWADDR=08:00:27:C8:51:7A 08:00:27:5D:EE:93
 TYPE=Ethernet
 UUID=8eadb165-319d-4c5c-aea8-a8aa872218c1
 IPADDR=192.168.15.220
@@ -101,6 +101,8 @@ ONBOOT=yes
 NM_CONTROLLED=yes
 BOOTPROTO=dhcp
 ========================================
+
+
 
 设置dns
 vim /etc/resolv.conf

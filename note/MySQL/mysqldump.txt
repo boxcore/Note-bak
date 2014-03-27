@@ -18,6 +18,10 @@ mysqldump -uroot -p -B数据库名 --table 表名 > xxx.sql
 
 数据库导出
 mysqldump xinwenda -uroot -p123456 > /home/huangchunze/web/mysql/xinwenda.sql
+// 压缩导出
+mysqldump cocksucker -uroot -p123456 | gzip > /home/huangchunze/web/mysql/cocksucker-`date +%Y%m%d`.sql.gz
+// 还原压缩的MySQL数据库
+gunzip < /home/www/db/cocksucker-`date +%Y%m%d`.sql.gz | mysql -uroot -p123456 cocksucker
 
 数据导入
 mysql 数据库名 < 文件名
