@@ -27,10 +27,14 @@ gunzip < /home/www/db/cocksucker-`date +%Y%m%d`.sql.gz | mysql -uroot -p123456 c
 mysql 数据库名 < 文件名
 source /tmp/xxx.sql
 
+
+gunzip –c filename.gz > filename gunzip  // -c 显示解压过程，文件大则建议不用该参数
 use xinwenda
 source /home/www/db/xinwenda-20140118.sql
 use cocksucker
 source /home/www/db/cocksucker-20140118.sql
+
+mysqldump -uroot -p123456 cocksucker < /home/www/db/cocksucker-20140422.sql
 
 有时间输出
 #!/bin/bash
